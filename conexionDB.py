@@ -41,7 +41,7 @@ class Registro_Datos():
 
     def elimina_pais(self, codigo):
         cursor = self.conexion.cursor()
-        sql = '''DELETE FROM productos WHERE NOMBRE = {}'''.format(codigo)
+        sql = '''DELETE FROM country WHERE Code = {}'''.format(codigo)
         cursor.execute(sql)
         a = cursor.rowcount
         self.conexion.commit()
@@ -51,7 +51,7 @@ class Registro_Datos():
     def actualiza_pais(self, codigo, nombrep, continente, region, surfacearea, idependencia, poblacionp, expectativa,
                        gnp, gnpold, localname, gobierno, cabezadeestado, capital, codigo2):
         cur = self.conexion.cursor()
-        sql = '''UPDATE productos SET Name = '{}', Continent = '{}', Region = '{}', SurfaceArea = '{}', IndepYear = 
+        sql = '''UPDATE country SET Name = '{}', Continent = '{}', Region = '{}', SurfaceArea = '{}', IndepYear = 
         '{}', Population = '{}', LifeExpectancy = '{}', GNP = '{}', GNPOld = '{}', LocalName = '{}, GovernmentForm= 
         '{}', HeadOfState = '{}', Capital = '{}', Code2 = '{}' WHERE Code = '{}' '''.format(nombrep, continente,
                                                                                             region, surfacearea,
@@ -75,7 +75,7 @@ class Registro_Datos():
 
     def busca_ciudad(self, id):
         cursor = self.conexion.cursor()
-        sql = "SELECT * FROM country WHERE ID = {}".format(id)
+        sql = "SELECT * FROM city WHERE ID = {}".format(id)
         cursor.execute(sql)
         nombreC = cursor.fetchall()
         cursor.close()
@@ -83,7 +83,7 @@ class Registro_Datos():
 
     def agrega_ciudad(self, id, nombrec, codigopaisc, distrito, poblacionc):
         cursor = self.conexion.cursor()
-        sql = '''INSERT INTO country (ID,Name,CountryCode,District,Population) 
+        sql = '''INSERT INTO city (ID,Name,CountryCode,District,Population) 
         VALUES('{}', '{}','{}', '{}','{}')'''.format(id, nombrec, codigopaisc, distrito, poblacionc)
         cursor.execute(sql)
         registro = cursor.fetchall()
@@ -91,17 +91,59 @@ class Registro_Datos():
 
     def elimina_ciudad(self, id):
         cursor = self.conexion.cursor()
-        sql = '''DELETE FROM productos WHERE ID = {}'''.format(id)
+        sql = '''DELETE FROM city WHERE ID = {}'''.format(id)
         cursor.execute(sql)
         a = cursor.rowcount
         self.conexion.commit()
         cursor.close()
         return a
 
-    def actualiza_pais(self, id, nombrec, codigopaisc, distrito, poblacionc):
+    def actualiza_ciudad(self, id, nombrec, codigopaisc, distrito, poblacionc):
         cur = self.conexion.cursor()
-        sql = '''UPDATE productos SET Name='{}',CountryCode='{}',District='{}',Population='{}'
+        sql = '''UPDATE city SET Name='{}',CountryCode='{}',District='{}',Population='{}'
         WHERE ID = '{}' '''.format(nombrec, codigopaisc, distrito, poblacionc, id)
+        cur.execute(sql)
+        a = cur.rowcount
+        self.conexion.commit()
+        cur.close()
+        return a
+
+    def buscar_lenguajes(self):
+        cursor = self.conexion.cursor()
+        sql = "SELECT * FROM Countrylanguage"
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        return registro
+
+    def busca_lenguaje(self, lenguaje):
+        cursor = self.conexion.cursor()
+        sql = "SELECT * FROM CountryLanguage WHERE Language = {}".format(lenguaje)
+        cursor.execute(sql)
+        nombreL = cursor.fetchall()
+        cursor.close()
+        return nombreL
+
+    def agrega_lenguaje(self, codigopaisl, lenguaje, esofficial, porcentaje):
+        cursor = self.conexion.cursor()
+        sql = '''INSERT INTO CountryLanguage (CountyCode, Language, IsOfficial, Percentage) 
+        VALUES('{}', '{}','{}', '{}')'''.format(codigopaisl, lenguaje, esofficial, porcentaje)
+        cursor.execute(sql)
+        registro = cursor.fetchall()
+        return registro
+
+    def elimina_lenguaje(self,lenguaje):
+        cursor = self.conexion.cursor()
+        sql = '''DELETE FROM CountryLanguage WHERE ID = {}'''.format(lenguaje)
+        cursor.execute(sql)
+        a = cursor.rowcount
+        self.conexion.commit()
+        cursor.close()
+        return a
+
+    def actualiza_lenguaje(self, codigopaisl, lenguaje, esofficial, porcentaje):
+        cur = self.conexion.cursor()
+        sql = '''UPDATE CountryLanguage SET CountryCode='{}',IsOfficial='{}', Percentage='{}'
+        WHERE Language = '{}' '''.format(codigopaisl, lenguaje, esofficial, porcentaje)
         cur.execute(sql)
         a = cur.rowcount
         self.conexion.commit()
