@@ -1,8 +1,8 @@
 import mysql.connector
-import self as self
 
 
-class Registro_Datos():
+
+class RegistroDatos():
 
     def __init__(self):
         self.conexion = mysql.connector.connect(host="localhost",
@@ -17,9 +17,9 @@ class Registro_Datos():
         registro = cursor.fetchall()
         return registro
 
-    def busca_pais(self, codigo):
+    def busca_pais(self, codigop):
         cursor = self.conexion.cursor()
-        sql = "SELECT * FROM country WHERE Code = {}".format(codigo)
+        sql = "SELECT * FROM country WHERE Code = {}".format(codigop)
         cursor.execute(sql)
         nombreP = cursor.fetchall()
         cursor.close()
