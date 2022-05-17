@@ -10,6 +10,12 @@ class RegistroDatos():
                                                 user="root",
                                                 passwd="Seguridad225")
 
+
+
+
+    #-------------------------------Metodos de paises-------------------------------------------------------------------
+
+
     def buscar_paises(self):
         cursor = self.conexion.cursor()
         sql = "SELECT * FROM country"
@@ -25,16 +31,16 @@ class RegistroDatos():
         cursor.close()
         return nombreP
 
-    def agrega_pais(self, codigo, nombrep, continente, region, surfacearea, idependencia, poblacionp, expectativa, gnp,
-                    gnpold, localname, gobierno, cabezadeestado, capital, codigo2):
+    def agrega_pais(self, codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd, independenciaadd, poblacionpadd, expectativaadd, gnpadd,
+                    gnpoldadd, localnameadd, gobiernoadd, cabezadeestadoadd, capitaladd, codigo2add):
         cursor = self.conexion.cursor()
         sql = '''INSERT INTO country (Code, Name, Continent, Region, SurfaceArea, IndepYear, Population, 
         LifeExpectancy, GNP, GNPOld, LocalName, GovernmentForm, HeadOfState, Capital, Code2) VALUES('{}', '{}','{}', 
-        '{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')'''.format(codigo, nombrep, continente, region,
-                                                                               surfacearea, idependencia, poblacionp,
-                                                                               expectativa, gnp, gnpold, localname,
-                                                                               gobierno, cabezadeestado, capital,
-                                                                               codigo2)
+        '{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')'''.format(codigoadd, nombrepadd, continenteadd, regionadd,
+                                                                               surfaceareaadd, independenciaadd, poblacionpadd,
+                                                                               expectativaadd, gnpadd, gnpoldadd, localnameadd,
+                                                                               gobiernoadd, cabezadeestadoadd, capitaladd,
+                                                                               codigo2add)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
@@ -48,23 +54,26 @@ class RegistroDatos():
         cursor.close()
         return a
 
-    def actualiza_pais(self, codigo, nombrep, continente, region, surfacearea, idependencia, poblacionp, expectativa,
-                       gnp, gnpold, localname, gobierno, cabezadeestado, capital, codigo2):
+    def actualiza_pais(self, codigoac, nombrepac, continenteac, regionac, surfaceareaac, idependenciaac, poblacionpac, expectativaac,
+                       gnpac, gnpoldac, localnameac, gobiernoac, cabezadeestadoac, capitalac, codigo2ac):
         cur = self.conexion.cursor()
         sql = '''UPDATE country SET Name = '{}', Continent = '{}', Region = '{}', SurfaceArea = '{}', IndepYear = 
         '{}', Population = '{}', LifeExpectancy = '{}', GNP = '{}', GNPOld = '{}', LocalName = '{}, GovernmentForm= 
-        '{}', HeadOfState = '{}', Capital = '{}', Code2 = '{}' WHERE Code = '{}' '''.format(nombrep, continente,
-                                                                                            region, surfacearea,
-                                                                                            idependencia, poblacionp,
-                                                                                            expectativa,
-                                                                                            gnp, gnpold, localname,
-                                                                                            gobierno, cabezadeestado,
-                                                                                            capital, codigo2, codigo)
+        '{}', HeadOfState = '{}', Capital = '{}', Code2 = '{}' WHERE Code = '{}' '''.format(nombrepac, continenteac,
+                                                                                            regionac, surfaceareaac,
+                                                                                            idependenciaac, poblacionpac,
+                                                                                            expectativaac,
+                                                                                            gnpac, gnpoldac, localnameac,
+                                                                                            gobiernoac, cabezadeestadoac,
+                                                                                            capitalac, codigo2ac, codigoac)
         cur.execute(sql)
         a = cur.rowcount
         self.conexion.commit()
         cur.close()
         return a
+
+
+    #-------------------------------Metodos de Ciudades-------------------------------------------------------------------
 
     def buscar_ciudades(self):
         cursor = self.conexion.cursor()
@@ -73,9 +82,9 @@ class RegistroDatos():
         registro = cursor.fetchall()
         return registro
 
-    def busca_ciudad(self, id):
+    def busca_ciudad(self, busid):
         cursor = self.conexion.cursor()
-        sql = "SELECT * FROM city WHERE ID = {}".format(id)
+        sql = "SELECT * FROM city WHERE ID = {}".format(busid)
         cursor.execute(sql)
         nombreC = cursor.fetchall()
         cursor.close()
@@ -108,6 +117,9 @@ class RegistroDatos():
         cur.close()
         return a
 
+
+    #-------------------------------Metodos de lenguajes-------------------------------------------------------------------
+
     def buscar_lenguajes(self):
         cursor = self.conexion.cursor()
         sql = "SELECT * FROM Countrylanguage"
@@ -115,9 +127,9 @@ class RegistroDatos():
         registro = cursor.fetchall()
         return registro
 
-    def busca_lenguaje(self, lenguaje):
+    def busca_lenguaje(self, nomlenguaje):
         cursor = self.conexion.cursor()
-        sql = "SELECT * FROM CountryLanguage WHERE Language = {}".format(lenguaje)
+        sql = "SELECT * FROM CountryLanguage WHERE Language = {}".format(nomlenguaje)
         cursor.execute(sql)
         nombreL = cursor.fetchall()
         cursor.close()
