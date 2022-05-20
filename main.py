@@ -125,7 +125,7 @@ class MiApp(QtWidgets.QMainWindow):
         continenteadd = (self.ui.addContientep.text())
         regionadd = (self.ui.addRegionp.text())
         surfaceareaadd = (self.ui.addSurfacep.text())
-        independenciaadd = (self.ui.addIDc.text())
+        independenciaadd = (self.ui.addIndp.text())
         poblacionpadd = (self.ui.addPoblacionp.text())
         expectativaadd = (self.ui.addExpectp.text())
         gnpadd = (self.ui.addGnpp.text())
