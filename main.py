@@ -4,6 +4,7 @@ from GUI import *
 from conexionDB import*
 from PyQt5.QtWidgets import QTableWidgetItem
 
+#test
 
 class MiApp(QtWidgets.QMainWindow):
     def __init__(self):
