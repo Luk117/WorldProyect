@@ -5,10 +5,11 @@ import mysql.connector
 class RegistroDatos():
 
     def __init__(self):
+        password = input("password: ")
         self.conexion = mysql.connector.connect(host="localhost",
                                                 database="world",
                                                 user="root",
-                                                passwd="Seguridad225",
+                                                passwd=password,
                                                 autocommit=True)
 
 
