@@ -8,7 +8,8 @@ class RegistroDatos():
         self.conexion = mysql.connector.connect(host="localhost",
                                                 database="world",
                                                 user="root",
-                                                passwd="Seguridad225")
+                                                passwd="Seguridad225",
+                                                autocommit=True)
 
 
 
@@ -36,18 +37,14 @@ class RegistroDatos():
         cursor = self.conexion.cursor()
         sql = '''INSERT INTO country (Code, Name, Continent, Region, SurfaceArea, IndepYear, Population, 
         LifeExpectancy, GNP, GNPOld, LocalName, GovernmentForm, HeadOfState, Capital, Code2) VALUES('{}', '{}','{}', 
-        '{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')'''.format(codigoadd, nombrepadd, continenteadd, regionadd,
-                                                                               surfaceareaadd, independenciaadd, poblacionpadd,
-                                                                               expectativaadd, gnpadd, gnpoldadd, localnameadd,
-                                                                               gobiernoadd, cabezadeestadoadd, capitaladd,
-                                                                               codigo2add)
+        '{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')'''.format(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd, independenciaadd, poblacionpadd, expectativaadd, gnpadd, gnpoldadd, localnameadd, gobiernoadd, cabezadeestadoadd, capitaladd, codigo2add)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
 
-    def elimina_pais(self, codigo):
+    def elimina_pais(self, codigoel):
         cursor = self.conexion.cursor()
-        sql = '''DELETE FROM country WHERE Code = {}'''.format(codigo)
+        sql = '''SET FOREIGN_KEY_CHECKS=0; DELETE FROM country WHERE Code = {}; SET FOREIGN_KEY_CHECKS=1; '''.format(codigoel)
         cursor.execute(sql)
         a = cursor.rowcount
         self.conexion.commit()
@@ -90,20 +87,20 @@ class RegistroDatos():
         cursor.close()
         return nombreC
 
-    def agrega_ciudad(self, id, nombrec, codigopaisc, distrito, poblacionc):
+    def agrega_ciudad(self, idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd):
         cursor = self.conexion.cursor()
         sql = '''INSERT INTO city (ID,Name,CountryCode,District,Population) 
-        VALUES('{}', '{}','{}', '{}','{}')'''.format(id, nombrec, codigopaisc, distrito, poblacionc)
+        VALUES('{}', '{}','{}', '{}','{}')'''.format(idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
 
-    def elimina_ciudad(self, id):
+    def elimina_ciudad(self, idel):
         cursor = self.conexion.cursor()
-        sql = '''DELETE FROM city WHERE ID = {}'''.format(id)
+        sql = '''DELETE FROM city WHERE ID = {}'''.format(idel)
         cursor.execute(sql)
-        a = cursor.rowcount
         self.conexion.commit()
+        a = cursor.rowcount
         cursor.close()
         return a
 
@@ -135,10 +132,10 @@ class RegistroDatos():
         cursor.close()
         return nombreL
 
-    def agrega_lenguaje(self, codigopaisl, lenguaje, esofficial, porcentaje):
+    def agrega_lenguaje(self, addcodigopaisl, addlenguaje, addesofficial, addporcentaje):
         cursor = self.conexion.cursor()
-        sql = '''INSERT INTO CountryLanguage (CountyCode, Language, IsOfficial, Percentage) 
-        VALUES('{}', '{}','{}', '{}')'''.format(codigopaisl, lenguaje, esofficial, porcentaje)
+        sql = '''INSERT INTO CountryLanguage (CountryCode, Language, IsOfficial, Percentage) 
+        VALUES('{}', '{}','{}', '{}')'''.format(addcodigopaisl, addlenguaje, addesofficial, addporcentaje)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
