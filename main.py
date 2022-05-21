@@ -28,13 +28,13 @@ class MiApp(QtWidgets.QMainWindow):
         #Eliminar
         self.ui.bt_EliminarPais.clicked.connect(self.eliminar_pais)
         self.ui.bt_EliminarCiudad.clicked.connect(self.eliminar_ciudad)
-        self.ui.pushButton_3.clicked.connect(self.eliminar_lenguaje)
+        self.ui.bt_EliminarLenguaje.clicked.connect(self.eliminar_lenguaje)
 
 
         #Ingresar dato
         self.ui.bt_Addpais.clicked.connect(self.insert_pais)
         self.ui.bt_AddCiudad.clicked.connect(self.insert_ciudad)
-        self.ui.pushButton.clicked.connect(self.insert_lenguaje)
+        self.ui.bt_AddLenguaje.clicked.connect(self.insert_lenguaje)
 
 
         #Tanaño de Tablas
@@ -265,12 +265,12 @@ class MiApp(QtWidgets.QMainWindow):
             tablerow += 1
 
         if resp == None:
-            self.ui.pushButton_2.setText("NO EXISTE")
+            self.ui.estatusLenguaje.setText("NO EXISTE")
         elif resp == 0:
-            self.ui.pushButton_2.setText("NO EXISTE")
+            self.ui.estatusLenguaje.setText("NO EXISTE")
 
         else:
-            self.ui.pushButton_2.setText("SE ELIMINO")
+            self.ui.estatusLenguaje.setText("SE ELIMINO")
 
 
 
@@ -291,15 +291,15 @@ class MiApp(QtWidgets.QMainWindow):
             tablerow += 1
 
     def buscar_ciudad(self):
-        busid = self.ui.lineEdit_2.text()
+        busid = self.ui.idCiudad.text()
         busid = str("'" + busid + "'")
 
-        lineEdit_2 = self.datosTotal.busca_ciudad(busid)
-        i = len(lineEdit_2)
+        idCiudad = self.datosTotal.busca_ciudad(busid)
+        i = len(idCiudad)
 
         self.ui.tableCiudad.setRowCount(i)
         tablerow = 0
-        for row in lineEdit_2:
+        for row in idCiudad:
             self.ui.tableCiudad.setItem(tablerow,0,QtWidgets.QTableWidgetItem(str(row[0])))
             self.ui.tableCiudad.setItem(tablerow,1,QtWidgets.QTableWidgetItem(str(row[1])))
             self.ui.tableCiudad.setItem(tablerow,2,QtWidgets.QTableWidgetItem(str(row[2])))
