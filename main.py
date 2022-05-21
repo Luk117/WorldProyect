@@ -28,6 +28,8 @@ class MiApp(QtWidgets.QMainWindow):
         #Eliminar
         self.ui.bt_EliminarPais.clicked.connect(self.eliminar_pais)
         self.ui.bt_EliminarCiudad.clicked.connect(self.eliminar_ciudad)
+        self.ui.pushButton_3.clicked.connect(self.eliminar_lenguaje)
+
 
         #Ingresar dato
         self.ui.bt_Addpais.clicked.connect(self.insert_pais)
@@ -157,10 +159,10 @@ class MiApp(QtWidgets.QMainWindow):
 
     def eliminar_pais(self):
         codigoel = self.ui.codigoEliminarp.text()
-        codigoel = str("'"+ codigoel + "'")
+        codigoel = ("'"+ codigoel + "'")
 
         resp = (self.datosTotal.elimina_pais(codigoel))
-        datos = self.datosTotal.buscar_paises()
+        datos = (self.datosTotal.buscar_paises())
         i = len(datos)
 
         self.ui.tabla_pais.setRowCount(i)
@@ -245,6 +247,32 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.addPorcentajel.clear()
 
 
+    def eliminar_lenguaje(self):
+        lenguajedel = self.ui.lineEdit_3.text()
+        lenguajedel = ("'" + lenguajedel + "'")
+
+        resp = (self.datosTotal.elimina_lenguaje(lenguajedel))
+        datos = self.datosTotal.buscar_lenguajes()
+        i = len(datos)
+
+        self.ui.tableLenguaje.setRowCount(i)
+        tablerow = 0
+        for row in datos:
+            self.ui.tableLenguaje.setItem(tablerow,0,QtWidgets.QTableWidgetItem(str(row[0])))
+            self.ui.tableLenguaje.setItem(tablerow,1,QtWidgets.QTableWidgetItem(str(row[1])))
+            self.ui.tableLenguaje.setItem(tablerow,2,QtWidgets.QTableWidgetItem(str(row[2])))
+            self.ui.tableLenguaje.setItem(tablerow,3,QtWidgets.QTableWidgetItem(str(row[3])))
+            tablerow += 1
+
+        if resp == None:
+            self.ui.pushButton_2.setText("NO EXISTE")
+        elif resp == 0:
+            self.ui.pushButton_2.setText("NO EXISTE")
+
+        else:
+            self.ui.pushButton_2.setText("SE ELIMINO")
+
+
 
     #------------------------------------Metodos para las ciudades------------------------------------------------------
 
@@ -298,10 +326,10 @@ class MiApp(QtWidgets.QMainWindow):
 
 
     def eliminar_ciudad(self):
-        idel = self.ui.codigoEliminarc.text()
-        idel = str("'"+ idel + "'")
+        delid = self.ui.codigoEliminarc.text()
+        delid = ("'" + delid + "'")
 
-        resp = (self.datosTotal.elimina_pais(idel))
+        resp = (self.datosTotal.elimina_ciudad(delid))
         datos = self.datosTotal.buscar_ciudades()
         i = len(datos)
 
@@ -322,6 +350,38 @@ class MiApp(QtWidgets.QMainWindow):
 
         else:
             self.ui.estatusCiudad.setText("SE ELIMINO")
+
+    def modificar_ciudades(self):
+        id_producto = self.ui.id_producto.text()
+        id_producto = str("'" + id_producto + "'")
+        nombreXX = self.datosTotal.busca_producto(id_producto)
+
+        if nombreXX != None:
+
+            self.ui.id_buscar.setText("ACTUALIZAR")
+
+            codigoM = self.ui.codigo_actualizar.text()
+            nombreM = self.ui.nombre_actualizar.text()
+            modeloM = self.ui.modelo_actualizar.text()
+            precioM = self.ui.precio_actualizar.text()
+            cantidadM = self.ui.cantidad_actualizar.text()
+
+            act = self.datosTotal.actualiza_productos(codigoM,nombreM , modeloM, precioM, cantidadM)
+            if act == 1:
+                self.ui.id_buscar.setText("ACTUALIZADO")
+                self.ui.codigo_actualizar.clear()
+                self.ui.nombre_actualizar.clear()
+                self.ui.modelo_actualizar.clear()
+                self.ui.precio_actualizar.clear()
+                self.ui.cantidad_actualizar.clear()
+                self.ui.id_producto.clear()
+
+            elif act == 0:
+                self.ui.id_buscar.setText("ERROR")
+            else:
+                self.ui.id_buscar.setText("INCORRECTO")
+        else:
+            self.ui.id_buscar.setText("NO EXISTE")
 
 #if __name__ == "__main__":
     #import sys

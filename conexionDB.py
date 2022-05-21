@@ -45,7 +45,7 @@ class RegistroDatos():
 
     def elimina_pais(self, codigoel):
         cursor = self.conexion.cursor()
-        sql = '''SET FOREIGN_KEY_CHECKS=0; DELETE FROM country WHERE Code = {}; SET FOREIGN_KEY_CHECKS=1; '''.format(codigoel)
+        sql = '''DELETE FROM country WHERE Code = {}'''.format(codigoel)
         cursor.execute(sql)
         a = cursor.rowcount
         self.conexion.commit()
@@ -141,9 +141,9 @@ class RegistroDatos():
         registro = cursor.fetchall()
         return registro
 
-    def elimina_lenguaje(self,lenguaje):
+    def elimina_lenguaje(self,lenguajedel):
         cursor = self.conexion.cursor()
-        sql = '''DELETE FROM CountryLanguage WHERE ID = {}'''.format(lenguaje)
+        sql = '''DELETE FROM CountryLanguage WHERE Language = {}'''.format(lenguajedel)
         cursor.execute(sql)
         a = cursor.rowcount
         self.conexion.commit()
