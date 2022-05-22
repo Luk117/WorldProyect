@@ -105,8 +105,8 @@ class RegistroDatos():
 
     def actualiza_ciudad(self, id, nombrec, codigopaisc, distrito, poblacionc):
         cur = self.conexion.cursor()
-        sql = '''UPDATE city SET Name='{}',CountryCode='{}',District='{}',Population='{}'
-        WHERE ID = '{}' '''.format(nombrec, codigopaisc, distrito, poblacionc, id)
+        sql = '''UPDATE city SET Name='{}',CountryCode='{}',District='{}',Population={}
+        WHERE ID = {} '''.format(nombrec, codigopaisc, distrito, poblacionc, id)
         cur.execute(sql)
         a = cur.rowcount
         self.conexion.commit()

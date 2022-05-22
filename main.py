@@ -29,7 +29,13 @@ class MiApp(QtWidgets.QMainWindow):
 
         #Actualizar
         self.ui.upPais.clicked.connect(self.actualizar_pais)
+        self.ui.upCiudad.clicked.connect(self.actualizar_ciudad)
+
+        #FillUpdates
         self.ui.codigoPaisUp.returnPressed.connect(self.fillact_pais)
+        self.ui.idCiudadup.returnPressed.connect(self.fillact_city)
+        self.ui.codLenguaup.returnPressed.connect(self.fillact_lan)
+
 
 
 
@@ -144,7 +150,7 @@ class MiApp(QtWidgets.QMainWindow):
         poblacionpadd = (self.ui.upPoblacionp.text())
         expectativaadd = (self.ui.upExpectp.text())
         gnpadd = (self.ui.upGnpp.text())
-        gnpoldadd= (self.ui.upGnoidp.text())
+        gnpoldadd = (self.ui.upGnoidp.text())
         localnameadd = (self.ui.upNomlocalp.text())
         gobiernoadd = (self.ui.upFormGovp.text())
         cabezadeestadoadd = (self.ui.upCabEstp.text())
@@ -152,13 +158,6 @@ class MiApp(QtWidgets.QMainWindow):
         codigo2add = (self.ui.upCode2p.text())
 
         self.datosTotal.actualiza_pais(codigoadd, nombrepadd,continenteadd,regionadd,surfaceareaadd,independenciaadd,poblacionpadd,expectativaadd,gnpadd,gnpoldadd,localnameadd,gobiernoadd,cabezadeestadoadd,capitaladd,codigo2add)
-
-
-
-
-
-
-
 
 
     def fillact_pais(self):
@@ -182,10 +181,6 @@ class MiApp(QtWidgets.QMainWindow):
             self.ui.upCabEstp.setText(str(data[12]))
             self.ui.upCapitalp.setText(str(data[13]))
             self.ui.upCode2p.setText(str(data[14]))
-
-
-
-
 
 
 
@@ -252,6 +247,31 @@ class MiApp(QtWidgets.QMainWindow):
 
         else:
             self.ui.estatusLenguaje.setText("SE ELIMINO")
+
+    def fillact_lan(self):
+        codigorr = str(self.ui.codLenguaup.text())
+        codigorr = ("'"+codigorr+"'")
+        autofill = self.datosTotal.busca_lenguaje(codigorr)
+
+        for data in autofill:
+            self.ui.upCountryCodel.setText(str(data[0]))
+            self.ui.upLenguajel.setText(str(data[1]))
+            self.ui.upOfficiall.setText(str(data[2]))
+            self.ui.upPorcentajel.setText(str(data[3]))
+
+    def actualizar_lan(self):
+
+        addcodigopaisl = self.ui.addCountryCodel.text()
+        addlenguaje = self.ui.addLenguajel.text()
+        addesofficial = self.ui.addOfficiall.text()
+        addporcentaje = self.ui.addPorcentajel.text()
+
+        self.datosTotal.actualiza_ciudad(addcodigopaisl, addlenguaje, addesofficial, addporcentaje)
+
+
+
+
+
 
 
 
@@ -332,6 +352,35 @@ class MiApp(QtWidgets.QMainWindow):
                 self.ui.id_buscar.setText("INCORRECTO")
         else:
             self.ui.id_buscar.setText("NO EXISTE")
+
+    def actualizar_ciudad(self):
+
+        idadd = str(self.ui.upIDc.text())
+        nombrecadd = str(self.ui.upNombrec.text())
+        codigopaiscadd = str(self.ui.upCountryCodec.text())
+        distritoadd = str(self.ui.upDistritoc.text())
+        poblacioncadd = str(self.ui.upPoblacionc.text())
+
+        self.datosTotal.actualiza_ciudad(idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
+
+
+
+
+    def fillact_city(self):
+        codigorr = str(self.ui.idCiudadup.text())
+        codigorr = ("'"+codigorr+"'")
+        autofill = self.datosTotal.busca_ciudad(codigorr)
+
+        for data in autofill:
+            self.ui.upIDc.setText(str(data[0]))
+            self.ui.upNombrec.setText(str(data[1]))
+            self.ui.upCountryCodec.setText(str(data[2]))
+            self.ui.upDistritoc.setText(str(data[3]))
+            self.ui.upPoblacionc.setText(str(data[4]))
+
+
+
+
 
 #if __name__ == "__main__":
     #import sys
