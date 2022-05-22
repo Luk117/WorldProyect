@@ -55,11 +55,9 @@ class RegistroDatos():
     def actualiza_pais(self, codigoac, nombrepac, continenteac, regionac, surfaceareaac, idependenciaac, poblacionpac, expectativaac,
                        gnpac, gnpoldac, localnameac, gobiernoac, cabezadeestadoac, capitalac, codigo2ac):
         cur = self.conexion.cursor()
-        sql = '''UPDATE country SET Name = '{}', Continent = '{}', Region = '{}', SurfaceArea = '{}', IndepYear = 
-        '{}', Population = '{}', LifeExpectancy = '{}', GNP = '{}', GNPOld = '{}', LocalName = '{}, GovernmentForm= 
-        '{}', HeadOfState = '{}', Capital = '{}', Code2 = '{}' WHERE Code = '{}' '''.format(nombrepac, continenteac,
-                                                                                            regionac, surfaceareaac,
-                                                                                            idependenciaac, poblacionpac,
+        sql = '''UPDATE country SET Name = '{}', Continent = '{}', Region = '{}', SurfaceArea = {}, IndepYear = 
+        {},Population = {}, LifeExpectancy = {}, GNP = {}, GNPOld = {}, LocalName = '{}', GovernmentForm= 
+        '{}', HeadOfState = '{}', Capital = {}, Code2 = '{}' WHERE Code = '{}' '''.format(nombrepac, continenteac, regionac, surfaceareaac, idependenciaac,poblacionpac,
                                                                                             expectativaac,
                                                                                             gnpac, gnpoldac, localnameac,
                                                                                             gobiernoac, cabezadeestadoac,

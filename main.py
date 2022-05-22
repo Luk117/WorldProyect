@@ -30,6 +30,11 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.bt_EliminarCiudad.clicked.connect(self.eliminar_ciudad)
         self.ui.bt_EliminarLenguaje.clicked.connect(self.eliminar_lenguaje)
 
+        #Actualizar
+        self.ui.upPais.clicked.connect(self.actualizar_pais)
+        self.ui.codigoPaisUp.returnPressed.connect(self.fillact_pais)
+
+
 
         #Ingresar dato
         self.ui.bt_Addpais.clicked.connect(self.insert_pais)
@@ -192,6 +197,68 @@ class MiApp(QtWidgets.QMainWindow):
 
         else:
             self.ui.estatusPais.setText("SE ELIMINO")
+
+    def actualizar_pais(self):
+
+        codigoadd = (self.ui.upCodep.text())
+        nombrepadd = (self.ui.upNamep.text())
+        continenteadd = (self.ui.upContientep.text())
+        regionadd = (self.ui.upRegionp.text())
+        surfaceareaadd = (self.ui.upSurfacep.text())
+        independenciaadd = (self.ui.upIndp.text())
+        poblacionpadd = (self.ui.upPoblacionp.text())
+        expectativaadd = (self.ui.upExpectp.text())
+        gnpadd = (self.ui.upGnpp.text())
+        gnpoldadd= (self.ui.upGnoidp.text())
+        localnameadd = (self.ui.upNomlocalp.text())
+        gobiernoadd = (self.ui.upFormGovp.text())
+        cabezadeestadoadd = (self.ui.upCabEstp.text())
+        capitaladd = (self.ui.upCapitalp.text())
+        codigo2add = (self.ui.upCode2p.text())
+
+        self.datosTotal.actualiza_pais(codigoadd, nombrepadd,continenteadd,regionadd,surfaceareaadd,independenciaadd,poblacionpadd,expectativaadd,gnpadd,gnpoldadd,localnameadd,gobiernoadd,cabezadeestadoadd,capitaladd,codigo2add)
+
+
+
+
+
+
+
+
+
+    def fillact_pais(self):
+        codigorr = str(self.ui.codigoPaisUp.text())
+        codigorr = ("'"+codigorr+"'")
+        autofill = self.datosTotal.busca_pais(codigorr)
+
+        for data in autofill:
+            self.ui.upCodep.setText(str(data[0]))
+            self.ui.upNamep.setText((data[1]))
+            self.ui.upContientep.setText((data[2]))
+            self.ui.upRegionp.setText(data[3])
+            self.ui.upSurfacep.setText(str(data[4]))
+            self.ui.upIndp.setText(str(data[5]))
+            self.ui.upPoblacionp.setText(str(data[6]))
+            self.ui.upExpectp.setText(str(data[7]))
+            self.ui.upGnpp.setText(str(data[8]))
+            self.ui.upGnoidp.setText(str(data[9]))
+            self.ui.upNomlocalp.setText(str(data[10]))
+            self.ui.upFormGovp.setText(str(data[11]))
+            self.ui.upCabEstp.setText(str(data[12]))
+            self.ui.upCapitalp.setText(str(data[13]))
+            self.ui.upCode2p.setText(str(data[14]))
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
