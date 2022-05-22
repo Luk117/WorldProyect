@@ -105,28 +105,30 @@ class MiApp(QtWidgets.QMainWindow):
         sql = Query()
         sql.append_tables('country as p')
 
-        for box in self.cbxes_pais:
-            if box.isChecked():
-                sql.append_parameters(self.cbxes_pais[box])
+        # parameters
+        set_parameters(sql, self.cbxes_pais)
+        # for box in self.cbxes_pais:
+        #     if box.isChecked():
+        #         sql.append_parameters(self.cbxes_pais[box])
 
         # set table
-        parameters = sql.get_parameters() if len(sql.get_parameters()) > 0 else self.datosTotal.get_column_names('country')
-        i = 0
-        item = self.ui.tabla_pais
-        for par in parameters:
-            item.horizontalHeaderItem(i).setText(par)
-            item.setColumnHidden(i, False)
-            i += 1
-        for j in range(i, 15):
-            item.setColumnHidden(j, True)
+        set_tabla_busqueda(sql, self.datosTotal, self.ui.tabla_pais)
+        # parameters = sql.get_parameters() if len(sql.get_parameters()) > 0 else self.datosTotal.get_column_names(
+        #     'country')
+        # i = 0
+        # item = self.ui.tabla_pais
+        # for par in parameters:
+        #     item.horizontalHeaderItem(i).setText(par)
+        #     item.setColumnHidden(i, False)
+        #     i += 1
+        # for j in range(i, 15):
+        #     item.setColumnHidden(j, True)
 
-        # setTable(self.cbxes_pais, self.ui.tabla_pais)
         # decide what to look for (with queries)
         name_p = self.ui.codigoPais_A.text()
         if not name_p.__eq__('\'\''):
             sql.append_wheres("p.name like '{}'".format(name_p))
         datos = self.datosTotal.busca_pais_query(sql.get_query())
-
 
         # decide what to look for (no queries)
         # codigop = self.ui.codigoPais_A.text()
@@ -427,6 +429,24 @@ def set_items(datos, table):
     for tablerow, row in enumerate(datos):
         for j in range(n_columns):
             table.setItem(tablerow, j, QtWidgets.QTableWidgetItem(str(row[j])))
+
+
+def set_parameters(query: Query, cbxes: dict):
+    for box in cbxes:
+        if box.isChecked():
+            query.append_parameters(cbxes[box])
+
+
+def set_tabla_busqueda(query: Query, datos, tabla):
+    parameters = query.get_parameters() if len(query.get_parameters()) > 0 else datos.get_column_names(
+        'country')
+    i = 0
+    for par in parameters:
+        tabla.horizontalHeaderItem(i).setText(par)
+        tabla.setColumnHidden(i, False)
+        i += 1
+    for j in range(i, 15):
+        tabla.setColumnHidden(j, True)
 
 
 # if __name__ == "__main__":

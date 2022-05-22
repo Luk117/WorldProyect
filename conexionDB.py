@@ -11,15 +11,15 @@ class RegistroDatos():
                                                 passwd=password,
                                                 autocommit=True)
 
-    # -------------------------------Metodos de paises-------------------------------------------------------------------
+    # -------------------------------Metodos de paises------------------------------------------------------------------
 
     def busca_pais(self, codigop):
         cursor = self.conexion.cursor()
         sql = "SELECT * FROM country WHERE Code = {}".format(codigop)
         cursor.execute(sql)
-        nombreP = cursor.fetchall()
+        nombre_p = cursor.fetchall()
         cursor.close()
-        return nombreP
+        return nombre_p
 
     def busca_pais_query(self, query):
         cursor = self.conexion.cursor()
