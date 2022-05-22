@@ -128,6 +128,14 @@ class RegistroDatos():
         cursor.close()
         return nombreL
 
+    def busca_lenguajeYpais(self, nomlenguaje, codpais):
+        cursor = self.conexion.cursor()
+        sql = "SELECT * FROM CountryLanguage WHERE Language = {} AND countrycode = {}".format(nomlenguaje, codpais)
+        cursor.execute(sql)
+        nombreL = cursor.fetchall()
+        cursor.close()
+        return nombreL
+
     def agrega_lenguaje(self, addcodigopaisl, addlenguaje, addesofficial, addporcentaje):
         cursor = self.conexion.cursor()
         sql = '''INSERT INTO CountryLanguage (CountryCode, Language, IsOfficial, Percentage) 
@@ -147,8 +155,9 @@ class RegistroDatos():
 
     def actualiza_lenguaje(self, codigopaisl, lenguaje, esofficial, porcentaje):
         cur = self.conexion.cursor()
-        sql = '''UPDATE CountryLanguage SET CountryCode='{}',IsOfficial='{}', Percentage='{}'
-        WHERE Language = '{}' '''.format(codigopaisl, lenguaje, esofficial, porcentaje)
+        sql = '''UPDATE countrylanguage SET isOfficial='{}', percentage='{}'
+        WHERE countryCode = '{}' and language='{}' '''.format(esofficial, porcentaje, codigopaisl, lenguaje)
+        print(sql)
         cur.execute(sql)
         a = cur.rowcount
         self.conexion.commit()

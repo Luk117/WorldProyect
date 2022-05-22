@@ -58,11 +58,13 @@ class MiApp(QtWidgets.QMainWindow):
         # Actualizar
         self.ui.upPais.clicked.connect(self.actualizar_pais)
         self.ui.upCiudad.clicked.connect(self.actualizar_ciudad)
+        self.ui.upLengua.clicked.connect(self.actualizar_lan)
+
 
         # FillUpdates
         self.ui.codigoPaisUp.returnPressed.connect(self.fillact_pais)
         self.ui.idCiudadup.returnPressed.connect(self.fillact_city)
-        self.ui.codLenguaup.returnPressed.connect(self.fillact_lan)
+        self.ui.codeCUpLanc.returnPressed.connect(self.fillact_lan)
 
         # Ingresar dato
         self.ui.bt_Addpais.clicked.connect(self.insert_pais)
@@ -293,22 +295,36 @@ class MiApp(QtWidgets.QMainWindow):
     def fillact_lan(self):
         codigorr = str(self.ui.codLenguaup.text())
         codigorr = ("'" + codigorr + "'")
-        autofill = self.datosTotal.busca_lenguaje(codigorr)
+        codigopais = str(self.ui.codeCUpLanc.text())
+        codigopais = ("'" + codigopais + "'")
+        autofill = self.datosTotal.busca_lenguajeYpais(codigorr, codigopais)
 
         for data in autofill:
             self.ui.upCountryCodel.setText(str(data[0]))
             self.ui.upLenguajel.setText(str(data[1]))
+            if(str(data[2])=="T"):
+                self.ui.radioSi_lan.setChecked(True)
+                self.ui.radioNo_lan.setChecked(False)
+            elif(str(data[2])=="F"):
+                self.ui.radioNo_lan.setChecked(True)
+                self.ui.radioSi_lan.setChecked(False)
             self.ui.upOfficiall.setText(str(data[2]))
             self.ui.upPorcentajel.setText(str(data[3]))
 
     def actualizar_lan(self):
 
-        addcodigopaisl = self.ui.addCountryCodel.text()
-        addlenguaje = self.ui.addLenguajel.text()
-        addesofficial = self.ui.addOfficiall.text()
-        addporcentaje = self.ui.addPorcentajel.text()
+        upcodigopaisl = self.ui.upCountryCodel.text()
+        uplenguaje = self.ui.upLenguajel.text()
+        upporcentaje = self.ui.upPorcentajel.text()
 
-        self.datosTotal.actualiza_ciudad(addcodigopaisl, addlenguaje, addesofficial, addporcentaje)
+        if(self.ui.radioSi_lan.isChecked()==True):
+            upesofficial='T'
+        elif(self.ui.radioNo_lan.isChecked()==True):
+            upesofficial='F'
+
+
+
+        self.datosTotal.actualiza_lenguaje(upcodigopaisl, uplenguaje, upesofficial, upporcentaje)
 
     # ------------------------------------Metodos para las ciudades------------------------------------------------------
 
