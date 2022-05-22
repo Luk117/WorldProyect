@@ -17,9 +17,9 @@ class MiApp(QtWidgets.QMainWindow):
         # Acciones de Boton
 
         # Mostrar todos los datos
-        # Solo es no poner nada en la barra de busqueda
+        #   Solo es no poner nada en la barra de busqueda
 
-        # Buscar dato especifico
+        # Buscar dato
         self.ui.bt_buscarpais_A.clicked.connect(self.buscar_pais)
         self.ui.bt_buscarciudad_A.clicked.connect(self.buscar_ciudad)
         self.ui.bt_buscarlenguaje_A.clicked.connect(self.buscar_lenguaje)
@@ -73,15 +73,6 @@ class MiApp(QtWidgets.QMainWindow):
             datos = self.datosTotal.buscar_paises()
 
         set_items(datos, self.ui.tabla_pais)
-        # i = len(datos)
-        # n_columns = len(datos[0])
-        #
-        # self.ui.tabla_pais.setRowCount(i)
-        # tablerow = 0
-        # for row in datos:
-        #     for j in range(n_columns):
-        #         self.ui.tabla_pais.setItem(tablerow, j, QtWidgets.QTableWidgetItem(str(row[j])))
-        #     tablerow += 1
 
     def insert_pais(self):
         codigoadd = (self.ui.addCodep.text())
@@ -127,29 +118,9 @@ class MiApp(QtWidgets.QMainWindow):
         resp = (self.datosTotal.elimina_pais(codigoel))
         datos = self.datosTotal.buscar_paises()
 
-        i = len(datos)
+        set_items(datos, self.ui.tabla_pais)
 
-        self.ui.tabla_pais.setRowCount(i)
-        tablerow = 0
-        for row in datos:
-            self.ui.tabla_pais.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
-            self.ui.tabla_pais.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
-            self.ui.tabla_pais.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
-            self.ui.tabla_pais.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
-            self.ui.tabla_pais.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[4])))
-            self.ui.tabla_pais.setItem(tablerow, 5, QtWidgets.QTableWidgetItem(str(row[5])))
-            self.ui.tabla_pais.setItem(tablerow, 6, QtWidgets.QTableWidgetItem(str(row[6])))
-            self.ui.tabla_pais.setItem(tablerow, 7, QtWidgets.QTableWidgetItem(str(row[7])))
-            self.ui.tabla_pais.setItem(tablerow, 8, QtWidgets.QTableWidgetItem(str(row[8])))
-            self.ui.tabla_pais.setItem(tablerow, 9, QtWidgets.QTableWidgetItem(str(row[9])))
-            self.ui.tabla_pais.setItem(tablerow, 10, QtWidgets.QTableWidgetItem(str(row[10])))
-            self.ui.tabla_pais.setItem(tablerow, 11, QtWidgets.QTableWidgetItem(str(row[11])))
-            self.ui.tabla_pais.setItem(tablerow, 12, QtWidgets.QTableWidgetItem(str(row[12])))
-            self.ui.tabla_pais.setItem(tablerow, 13, QtWidgets.QTableWidgetItem(str(row[13])))
-            self.ui.tabla_pais.setItem(tablerow, 14, QtWidgets.QTableWidgetItem(str(row[14])))
-            tablerow += 1
-
-        if resp == None:
+        if resp is None:
             self.ui.estatusPais.setText("NO EXISTE")
         elif resp == 0:
             self.ui.estatusPais.setText("NO EXISTE")
@@ -170,16 +141,6 @@ class MiApp(QtWidgets.QMainWindow):
             datos = self.datosTotal.buscar_lenguajes()
 
         set_items(datos, self.ui.tableLenguaje)
-        #
-        # i = len(datos)
-        # n_columns = len(datos[0])
-        #
-        # self.ui.tableLenguaje.setRowCount(i)
-        # tablerow = 0
-        # for row in datos:
-        #     for j in range(n_columns):
-        #         self.ui.tableLenguaje.setItem(tablerow, j, QtWidgets.QTableWidgetItem(str(row[j])))
-        #     tablerow += 1
 
     def insert_lenguaje(self):
 
@@ -207,17 +168,6 @@ class MiApp(QtWidgets.QMainWindow):
             datos = self.datosTotal.buscar_ciudades()
 
         set_items(datos, self.ui.tableCiudad)
-        # i = len(datos)
-        #
-        # self.ui.tableCiudad.setRowCount(i)
-        # tablerow = 0
-        # for row in datos:
-        #     self.ui.tableCiudad.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
-        #     self.ui.tableCiudad.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
-        #     self.ui.tableCiudad.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
-        #     self.ui.tableCiudad.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
-        #     self.ui.tableCiudad.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[4])))
-        #     tablerow += 1
 
     def insert_ciudad(self):
 
@@ -243,19 +193,8 @@ class MiApp(QtWidgets.QMainWindow):
         datos = self.datosTotal.buscar_ciudades()
 
         set_items(datos, self.ui.tableCiudad)
-        # i = len(datos)
-        #
-        # self.ui.tableCiudad.setRowCount(i)
-        # tablerow = 0
-        # for row in datos:
-        #     self.ui.tableCiudad.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
-        #     self.ui.tableCiudad.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
-        #     self.ui.tableCiudad.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
-        #     self.ui.tableCiudad.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
-        #     self.ui.tableCiudad.setItem(tablerow, 4, QtWidgets.QTableWidgetItem(str(row[4])))
-        #     tablerow += 1
 
-        if resp == None:
+        if resp is None:
             self.ui.estatusCiudad.setText("NO EXISTE")
         elif resp == 0:
             self.ui.estatusCiudad.setText("NO EXISTE")
