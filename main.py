@@ -77,7 +77,7 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.bt_AddCiudad.clicked.connect(self.insert_ciudad)
         self.ui.bt_AddLenguaje.clicked.connect(self.insert_lenguaje)
 
-        # Tanaño de Tablas
+        # Tamaño de Tablas
         self.ui.tabla_busqueda.setColumnWidth(0, 100)
         self.ui.tabla_busqueda.setColumnWidth(1, 100)
         self.ui.tabla_busqueda.setColumnWidth(2, 100)
@@ -387,37 +387,37 @@ class MiApp(QtWidgets.QMainWindow):
         else:
             self.ui.estatusCiudad.setText("SE ELIMINO")
 
-    def modificar_ciudades(self):
-        id_producto = self.ui.id_producto.text()
-        id_producto = str("'" + id_producto + "'")
-        nombreXX = self.conexion_db.busca_producto(id_producto)
-
-        if nombreXX != None:
-
-            self.ui.id_buscar.setText("ACTUALIZAR")
-
-            codigoM = self.ui.codigo_actualizar.text()
-            nombreM = self.ui.nombre_actualizar.text()
-            modeloM = self.ui.modelo_actualizar.text()
-            precioM = self.ui.precio_actualizar.text()
-            cantidadM = self.ui.cantidad_actualizar.text()
-
-            act = self.conexion_db.actualiza_productos(codigoM, nombreM, modeloM, precioM, cantidadM)
-            if act == 1:
-                self.ui.id_buscar.setText("ACTUALIZADO")
-                self.ui.codigo_actualizar.clear()
-                self.ui.nombre_actualizar.clear()
-                self.ui.modelo_actualizar.clear()
-                self.ui.precio_actualizar.clear()
-                self.ui.cantidad_actualizar.clear()
-                self.ui.id_producto.clear()
-
-            elif act == 0:
-                self.ui.id_buscar.setText("ERROR")
-            else:
-                self.ui.id_buscar.setText("INCORRECTO")
-        else:
-            self.ui.id_buscar.setText("NO EXISTE")
+    # def modificar_ciudades(self):
+    #     id_producto = self.ui.id_producto.text()
+    #     id_producto = str("'" + id_producto + "'")
+    #     nombreXX = self.conexion_db.busca_producto(id_producto)
+    #
+    #     if nombreXX != None:
+    #
+    #         self.ui.id_buscar.setText("ACTUALIZAR")
+    #
+    #         codigoM = self.ui.codigo_actualizar.text()
+    #         nombreM = self.ui.nombre_actualizar.text()
+    #         modeloM = self.ui.modelo_actualizar.text()
+    #         precioM = self.ui.precio_actualizar.text()
+    #         cantidadM = self.ui.cantidad_actualizar.text()
+    #
+    #         act = self.conexion_db.actualiza_productos(codigoM, nombreM, modeloM, precioM, cantidadM)
+    #         if act == 1:
+    #             self.ui.id_buscar.setText("ACTUALIZADO")
+    #             self.ui.codigo_actualizar.clear()
+    #             self.ui.nombre_actualizar.clear()
+    #             self.ui.modelo_actualizar.clear()
+    #             self.ui.precio_actualizar.clear()
+    #             self.ui.cantidad_actualizar.clear()
+    #             self.ui.id_producto.clear()
+    #
+    #         elif act == 0:
+    #             self.ui.id_buscar.setText("ERROR")
+    #         else:
+    #             self.ui.id_buscar.setText("INCORRECTO")
+    #     else:
+    #         self.ui.id_buscar.setText("NO EXISTE")
 
     def actualizar_ciudad(self):
 
