@@ -130,6 +130,9 @@ class MiApp(QtWidgets.QMainWindow):
 
         set_items(datos, self.ui.tabla_busqueda)
 
+    def busqueda_avanzada(self):
+        pass
+
     def insert_pais(self):
         codigoadd = (self.ui.addCodep.text())
         nombrepadd = (self.ui.addNamep.text())
@@ -216,8 +219,9 @@ class MiApp(QtWidgets.QMainWindow):
             codigo2add = (self.ui.upCode2p.text())
 
             self.conexion_db.actualiza_pais(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd,
-                                           independenciaadd, poblacionpadd, expectativaadd, gnpadd, gnpoldadd, localnameadd,
-                                           gobiernoadd, cabezadeestadoadd, capitaladd, codigo2add)
+                                            independenciaadd, poblacionpadd, expectativaadd, gnpadd, gnpoldadd,
+                                            localnameadd,
+                                            gobiernoadd, cabezadeestadoadd, capitaladd, codigo2add)
 
     def fillact_pais(self):
         codigorr = str(self.ui.codigoPaisUp.text())
