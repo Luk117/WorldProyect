@@ -3,7 +3,7 @@ from GUI import *
 from conexionDB import *
 from Query import *
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidgetItem, QMessageBox
 
 
 class MiApp(QtWidgets.QMainWindow):
@@ -185,26 +185,38 @@ class MiApp(QtWidgets.QMainWindow):
             self.ui.estatusPais.setText("SE ELIMINO")
 
     def actualizar_pais(self):
+        if((str(self.ui.codigoPaisUp.text())=="")):
+            msg= QMessageBox()
+            msg.setIcon(QMessageBox.Warning)
 
-        codigoadd = (self.ui.upCodep.text())
-        nombrepadd = (self.ui.upNamep.text())
-        continenteadd = (self.ui.upContientep.text())
-        regionadd = (self.ui.upRegionp.text())
-        surfaceareaadd = (self.ui.upSurfacep.text())
-        independenciaadd = (self.ui.upIndp.text())
-        poblacionpadd = (self.ui.upPoblacionp.text())
-        expectativaadd = (self.ui.upExpectp.text())
-        gnpadd = (self.ui.upGnpp.text())
-        gnpoldadd = (self.ui.upGnoidp.text())
-        localnameadd = (self.ui.upNomlocalp.text())
-        gobiernoadd = (self.ui.upFormGovp.text())
-        cabezadeestadoadd = (self.ui.upCabEstp.text())
-        capitaladd = (self.ui.upCapitalp.text())
-        codigo2add = (self.ui.upCode2p.text())
+            msg.setText("¡Debe ingresar el codigo del país a actualizar!")
 
-        self.datosTotal.actualiza_pais(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd,
-                                       independenciaadd, poblacionpadd, expectativaadd, gnpadd, gnpoldadd, localnameadd,
-                                       gobiernoadd, cabezadeestadoadd, capitaladd, codigo2add)
+            msg.setWindowTitle("Advertencia")
+
+            msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+
+            retval = msg.exec_()
+        else:
+
+            codigoadd = (self.ui.upCodep.text())
+            nombrepadd = (self.ui.upNamep.text())
+            continenteadd = (self.ui.upContientep.text())
+            regionadd = (self.ui.upRegionp.text())
+            surfaceareaadd = (self.ui.upSurfacep.text())
+            independenciaadd = (self.ui.upIndp.text())
+            poblacionpadd = (self.ui.upPoblacionp.text())
+            expectativaadd = (self.ui.upExpectp.text())
+            gnpadd = (self.ui.upGnpp.text())
+            gnpoldadd = (self.ui.upGnoidp.text())
+            localnameadd = (self.ui.upNomlocalp.text())
+            gobiernoadd = (self.ui.upFormGovp.text())
+            cabezadeestadoadd = (self.ui.upCabEstp.text())
+            capitaladd = (self.ui.upCapitalp.text())
+            codigo2add = (self.ui.upCode2p.text())
+
+            self.datosTotal.actualiza_pais(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd,
+                                           independenciaadd, poblacionpadd, expectativaadd, gnpadd, gnpoldadd, localnameadd,
+                                           gobiernoadd, cabezadeestadoadd, capitaladd, codigo2add)
 
     def fillact_pais(self):
         codigorr = str(self.ui.codigoPaisUp.text())
@@ -488,3 +500,4 @@ if __name__ == "__main__":
     mi_app = MiApp()
     mi_app.show()
     sys.exit(app.exec_())
+c
