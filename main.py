@@ -186,7 +186,8 @@ class MiApp(QtWidgets.QMainWindow):
 
     def actualizar_pais(self):
         if((str(self.ui.codigoPaisUp.text())=="")):
-            msg= QMessageBox()
+
+            msg = QMessageBox()
             msg.setIcon(QMessageBox.Warning)
 
             msg.setText("¡Debe ingresar el codigo del país a actualizar!")
@@ -198,7 +199,7 @@ class MiApp(QtWidgets.QMainWindow):
             retval = msg.exec_()
         else:
 
-            codigoadd = (self.ui.upCodep.text())
+            codigoadd = (self.ui.codigoPaisUp.text())
             nombrepadd = (self.ui.upNamep.text())
             continenteadd = (self.ui.upContientep.text())
             regionadd = (self.ui.upRegionp.text())
@@ -224,7 +225,7 @@ class MiApp(QtWidgets.QMainWindow):
         autofill = self.conexion_db.get_pais_by_code(codigorr)
 
         for data in autofill:
-            self.ui.upCodep.setText(str(data[0]))
+
             self.ui.upNamep.setText((data[1]))
             self.ui.upContientep.setText((data[2]))
             self.ui.upRegionp.setText(data[3])
@@ -293,6 +294,7 @@ class MiApp(QtWidgets.QMainWindow):
             self.ui.estatusLenguaje.setText("SE ELIMINO")
 
     def autofill_lan(self):
+
         codigorr = str(self.ui.codLenguaup.text())
         codigorr = ("'" + codigorr + "'")
         codigo_pais = str(self.ui.codeCUpLanc.text())
@@ -300,15 +302,13 @@ class MiApp(QtWidgets.QMainWindow):
         autofill = self.conexion_db.busca_lenguajeYpais(codigorr, codigo_pais)
 
         for data in autofill:
-            self.ui.upCountryCodel.setText(str(data[0]))
-            self.ui.upLenguajel.setText(str(data[1]))
+
             if (str(data[2]) == "T"):
                 self.ui.radioSi_lan.setChecked(True)
                 self.ui.radioNo_lan.setChecked(False)
             elif (str(data[2]) == "F"):
                 self.ui.radioNo_lan.setChecked(True)
                 self.ui.radioSi_lan.setChecked(False)
-            self.ui.upOfficiall.setText(str(data[2]))
             self.ui.upPorcentajel.setText(str(data[3]))
 
     def actualizar_lan(self):
@@ -428,7 +428,7 @@ class MiApp(QtWidgets.QMainWindow):
         autofill = self.conexion_db.get_ciudad_by_id(codigorr)
 
         for data in autofill:
-            self.ui.upIDc.setText(str(data[0]))
+
             self.ui.upNombrec.setText(str(data[1]))
             self.ui.upCountryCodec.setText(str(data[2]))
             self.ui.upDistritoc.setText(str(data[3]))
