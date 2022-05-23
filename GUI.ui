@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -33,88 +33,88 @@
      <attribute name="title">
       <string>Busqueda</string>
      </attribute>
-     <widget class="QTableWidget" name="tabla_busqueda">
+     <widget class="QTableWidget" name="tabla_pais">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>30</y>
-        <width>681</width>
-        <height>471</height>
+        <x>570</x>
+        <y>10</y>
+        <width>601</width>
+        <height>451</height>
        </rect>
       </property>
       <column>
        <property name="text">
-        <string/>
+        <string>Codigo</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>Nombre</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>Continente</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>Region</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>Surface Area</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>indepepyear</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>Poblacion</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>Expectativa</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>GNP</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>GNPOid</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>Nombre Local</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>Forma de Gob</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>Cabeza de Estado</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>Capital</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string/>
+        <string>Codigo2</string>
        </property>
       </column>
      </widget>
@@ -128,7 +128,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Busqueda&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Busqueda simple&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="textFormat">
        <enum>Qt::AutoText</enum>
@@ -495,11 +495,11 @@
        <string>Lenguaje</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="bt_busqueda_av">
+     <widget class="QPushButton" name="bt_refreshpais_2">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>390</y>
+        <y>410</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -558,36 +558,6 @@
       </property>
       <property name="text">
        <string>Area</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="warning_label">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>450</y>
-        <width>511</width>
-        <height>81</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="text">
-       <string>Ingrese Nombres para una busqueda especifica o deje en blanco para buscar todo.
-
-Delimite la busqueda como prefiera seleccionando las cajas o dejandolas en blanco para buscar con todos los parametros</string>
-      </property>
-      <property name="textFormat">
-       <enum>Qt::AutoText</enum>
-      </property>
-      <property name="scaledContents">
-       <bool>false</bool>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-      <property name="indent">
-       <number>0</number>
       </property>
      </widget>
     </widget>
@@ -1638,7 +1608,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>190</y>
+        <y>150</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1648,7 +1618,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>190</y>
+        <y>150</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -1661,7 +1631,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>330</x>
-        <y>150</y>
+        <y>110</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1671,7 +1641,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>150</y>
+        <y>110</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1681,7 +1651,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>270</y>
+        <y>230</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1691,20 +1661,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>330</x>
-        <y>190</y>
-        <width>91</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="upCodep">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>110</y>
+        <y>150</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1714,7 +1671,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>230</y>
+        <y>190</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1724,7 +1681,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>310</y>
+        <y>270</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1734,7 +1691,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>190</y>
+        <y>150</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -1747,7 +1704,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>330</x>
-        <y>270</y>
+        <y>230</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1757,7 +1714,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>330</x>
-        <y>230</y>
+        <y>190</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1767,7 +1724,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>310</y>
+        <y>270</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -1780,7 +1737,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>350</y>
+        <y>310</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1790,7 +1747,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>230</y>
+        <y>190</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -1803,7 +1760,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>150</y>
+        <y>110</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -1812,24 +1769,11 @@ color: rgb(255, 255, 255);</string>
        <string>Nombre</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_66">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>110</y>
-        <width>111</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Codigo (3 digitos)</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_67">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>110</y>
+        <x>10</x>
+        <y>350</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -1842,7 +1786,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>270</y>
+        <y>230</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -1855,7 +1799,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>350</y>
+        <y>310</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -1868,20 +1812,20 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>230</y>
+        <y>190</y>
         <width>101</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>Region</string>
+       <string>Región</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="upExpectp">
       <property name="geometry">
        <rect>
-        <x>330</x>
-        <y>110</y>
+        <x>120</x>
+        <y>350</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1891,7 +1835,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>310</y>
+        <y>270</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -1904,7 +1848,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>330</x>
-        <y>390</y>
+        <y>350</y>
         <width>91</width>
         <height>22</height>
        </rect>
@@ -1914,7 +1858,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>270</y>
+        <y>230</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -1927,7 +1871,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>150</y>
+        <y>110</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -1940,39 +1884,16 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>390</y>
+        <y>350</y>
         <width>101</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>codigo2 (2Dig)</string>
+       <string>Codigo 2 digitos</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="upCapitalp">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>350</y>
-        <width>91</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_75">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>350</y>
-        <width>101</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>poblacion</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="upCabEstp">
       <property name="geometry">
        <rect>
         <x>330</x>
@@ -1982,11 +1903,34 @@ color: rgb(255, 255, 255);</string>
        </rect>
       </property>
      </widget>
+     <widget class="QLabel" name="label_75">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>310</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Población</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="upCabEstp">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>270</y>
+        <width>91</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
      <widget class="QLabel" name="label_76">
       <property name="geometry">
        <rect>
         <x>560</x>
-        <y>270</y>
+        <y>230</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -1999,7 +1943,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>640</x>
-        <y>230</y>
+        <y>190</y>
         <width>113</width>
         <height>22</height>
        </rect>
@@ -2009,7 +1953,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>560</x>
-        <y>150</y>
+        <y>110</y>
         <width>49</width>
         <height>16</height>
        </rect>
@@ -2022,7 +1966,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>640</x>
-        <y>190</y>
+        <y>150</y>
         <width>113</width>
         <height>22</height>
        </rect>
@@ -2032,7 +1976,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>560</x>
-        <y>230</y>
+        <y>190</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -2041,37 +1985,11 @@ color: rgb(255, 255, 255);</string>
        <string>Distrito</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_79">
-      <property name="geometry">
-       <rect>
-        <x>560</x>
-        <y>110</y>
-        <width>49</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>ID</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="upIDc">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>110</y>
-        <width>113</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_80">
       <property name="geometry">
        <rect>
         <x>560</x>
-        <y>190</y>
+        <y>150</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -2084,7 +2002,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>640</x>
-        <y>150</y>
+        <y>110</y>
         <width>113</width>
         <height>22</height>
        </rect>
@@ -2094,53 +2012,17 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>640</x>
-        <y>270</y>
+        <y>230</y>
         <width>113</width>
         <height>22</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="upLenguajel">
-      <property name="geometry">
-       <rect>
-        <x>1100</x>
-        <y>150</y>
-        <width>113</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_81">
-      <property name="geometry">
-       <rect>
-        <x>1010</x>
-        <y>150</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Lenguaje</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_82">
-      <property name="geometry">
-       <rect>
-        <x>1010</x>
-        <y>110</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Codigo del país</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_83">
       <property name="geometry">
        <rect>
         <x>1010</x>
-        <y>190</y>
+        <y>110</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -2153,7 +2035,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>1010</x>
-        <y>230</y>
+        <y>150</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -2166,20 +2048,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>1100</x>
-        <y>230</y>
-        <width>113</width>
-        <height>22</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="upCountryCodel">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>1100</x>
-        <y>110</y>
+        <y>150</y>
         <width>113</width>
         <height>22</height>
        </rect>
@@ -2258,7 +2127,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>450</y>
+        <y>420</y>
         <width>201</width>
         <height>24</height>
        </rect>
@@ -2271,7 +2140,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>560</x>
-        <y>310</y>
+        <y>270</y>
         <width>191</width>
         <height>24</height>
        </rect>
@@ -2284,7 +2153,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>1010</x>
-        <y>270</y>
+        <y>190</y>
         <width>211</width>
         <height>24</height>
        </rect>
@@ -2297,7 +2166,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>440</y>
+        <y>410</y>
         <width>201</width>
         <height>41</height>
        </rect>
@@ -2319,7 +2188,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>580</x>
-        <y>350</y>
+        <y>310</y>
         <width>151</width>
         <height>41</height>
        </rect>
@@ -2341,7 +2210,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>1030</x>
-        <y>310</y>
+        <y>230</y>
         <width>171</width>
         <height>41</height>
        </rect>
@@ -2362,9 +2231,9 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="pushButton_7">
       <property name="geometry">
        <rect>
-        <x>1020</x>
-        <y>350</y>
-        <width>201</width>
+        <x>1010</x>
+        <y>320</y>
+        <width>221</width>
         <height>211</height>
        </rect>
       </property>
@@ -2428,7 +2297,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>1110</x>
-        <y>190</y>
+        <y>110</y>
         <width>82</width>
         <height>17</height>
        </rect>
@@ -2441,7 +2310,7 @@ color: rgb(255, 255, 255);</string>
       <property name="geometry">
        <rect>
         <x>1160</x>
-        <y>190</y>
+        <y>110</y>
         <width>82</width>
         <height>17</height>
        </rect>
