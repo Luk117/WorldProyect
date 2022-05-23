@@ -24,6 +24,10 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.bt_buscarciudad_A.clicked.connect(self.buscar_ciudad)
         self.ui.bt_buscarlenguaje_A.clicked.connect(self.buscar_lenguaje)
 
+        # self.ui.bt_buscarpais_A.clicked.connect(self.busqueda('country as p'))
+        # self.ui.bt_buscarciudad_A.clicked.connect(self.busqueda('city as c'))
+        # self.ui.bt_buscarlenguaje_A.clicked.connect(self.busqueda('countrylanguage'))
+
         # CheckBoxes busqueda
         self.cbxes_pais = {
             self.ui.cbx_p_name: 'p.name',
@@ -37,9 +41,9 @@ class MiApp(QtWidgets.QMainWindow):
         }
 
         self.cbxes_ciudad = {
-            self.ui.cbx_c_name: 'c.name',
             self.ui.cbx_c_country: 'c.CountryCode',  # look into how to actually show the country not the code
             self.ui.cbx_c_district: 'c.District',
+            self.ui.cbx_c_name: 'c.name',
             self.ui.cbx_c_population: 'c.population',
         }
 
@@ -60,7 +64,6 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.upCiudad.clicked.connect(self.actualizar_ciudad)
         self.ui.upLengua.clicked.connect(self.actualizar_lan)
 
-
         # FillUpdates
         self.ui.codigoPaisUp.returnPressed.connect(self.fillact_pais)
         self.ui.idCiudadup.returnPressed.connect(self.fillact_city)
@@ -72,22 +75,22 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.bt_AddLenguaje.clicked.connect(self.insert_lenguaje)
 
         # Tanaño de Tablas
-        self.ui.tabla_pais.setColumnWidth(0, 100)
-        self.ui.tabla_pais.setColumnWidth(1, 100)
-        self.ui.tabla_pais.setColumnWidth(2, 100)
-        self.ui.tabla_pais.setColumnWidth(3, 150)
-        self.ui.tabla_pais.setColumnWidth(4, 150)
-        self.ui.tabla_pais.setColumnWidth(5, 98)
-        self.ui.tabla_pais.setColumnWidth(6, 98)
-        self.ui.tabla_pais.setColumnWidth(7, 98)
-        self.ui.tabla_pais.setColumnWidth(8, 98)
-        self.ui.tabla_pais.setColumnWidth(9, 98)
-        self.ui.tabla_pais.setColumnWidth(10, 98)
-        self.ui.tabla_pais.setColumnWidth(11, 98)
-        self.ui.tabla_pais.setColumnWidth(12, 98)
-        self.ui.tabla_pais.setColumnWidth(13, 98)
-        self.ui.tabla_pais.setColumnWidth(14, 200)
-        self.ui.tabla_pais.setColumnWidth(15, 200)
+        self.ui.tabla_busqueda.setColumnWidth(0, 100)
+        self.ui.tabla_busqueda.setColumnWidth(1, 100)
+        self.ui.tabla_busqueda.setColumnWidth(2, 100)
+        self.ui.tabla_busqueda.setColumnWidth(3, 150)
+        self.ui.tabla_busqueda.setColumnWidth(4, 150)
+        self.ui.tabla_busqueda.setColumnWidth(5, 98)
+        self.ui.tabla_busqueda.setColumnWidth(6, 98)
+        self.ui.tabla_busqueda.setColumnWidth(7, 98)
+        self.ui.tabla_busqueda.setColumnWidth(8, 98)
+        self.ui.tabla_busqueda.setColumnWidth(9, 98)
+        self.ui.tabla_busqueda.setColumnWidth(10, 98)
+        self.ui.tabla_busqueda.setColumnWidth(11, 98)
+        self.ui.tabla_busqueda.setColumnWidth(12, 98)
+        self.ui.tabla_busqueda.setColumnWidth(13, 98)
+        self.ui.tabla_busqueda.setColumnWidth(14, 200)
+        self.ui.tabla_busqueda.setColumnWidth(15, 200)
 
         self.ui.tableLenguaje.setColumnWidth(0, 100)
         self.ui.tableLenguaje.setColumnWidth(1, 100)
@@ -100,6 +103,10 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.tableCiudad.setColumnWidth(3, 100)
         self.ui.tableCiudad.setColumnWidth(4, 100)
 
+    # def busqueda(self, tables):
+    #     sql = Query()
+    #     sql.append_tables(tables)
+    #
     # ------------------------------------Metodos para los paises------------------------------------------------------
 
     def buscar_pais(self):
@@ -109,38 +116,19 @@ class MiApp(QtWidgets.QMainWindow):
 
         # parameters
         set_parameters(sql, self.cbxes_pais)
-        # for box in self.cbxes_pais:
-        #     if box.isChecked():
-        #         sql.append_parameters(self.cbxes_pais[box])
+        if not sql.parameters:
+            sql.append_parameters(self.datosTotal.get_column_names('country'))
 
         # set table
-        set_tabla_busqueda(sql, self.datosTotal, self.ui.tabla_pais)
-        # parameters = sql.get_parameters() if len(sql.get_parameters()) > 0 else self.datosTotal.get_column_names(
-        #     'country')
-        # i = 0
-        # item = self.ui.tabla_pais
-        # for par in parameters:
-        #     item.horizontalHeaderItem(i).setText(par)
-        #     item.setColumnHidden(i, False)
-        #     i += 1
-        # for j in range(i, 15):
-        #     item.setColumnHidden(j, True)
+        set_tabla_busqueda(sql, self.ui.tabla_busqueda)
 
         # decide what to look for (with queries)
         name_p = self.ui.codigoPais_A.text()
-        if not name_p.__eq__('\'\''):
+        if not name_p.__eq__(''):
             sql.append_wheres("p.name like '{}'".format(name_p))
-        datos = self.datosTotal.busca_pais_query(sql.get_query())
+        datos = self.datosTotal.buscar(sql.get_query())
 
-        # decide what to look for (no queries)
-        # codigop = self.ui.codigoPais_A.text()
-        # codigop = str("'" + codigop + "'")
-        # if codigop != '\'\'':
-        #     datos = self.datosTotal.busca_pais(codigop)
-        # else:
-        #     datos = self.datosTotal.buscar_paises()
-
-        set_items(datos, self.ui.tabla_pais)
+        set_items(datos, self.ui.tabla_busqueda)
 
     def insert_pais(self):
         codigoadd = (self.ui.addCodep.text())
@@ -186,7 +174,7 @@ class MiApp(QtWidgets.QMainWindow):
         resp = (self.datosTotal.elimina_pais(codigoel))
         datos = self.datosTotal.buscar_paises()
 
-        set_items(datos, self.ui.tabla_pais)
+        set_items(datos, self.ui.tabla_busqueda)
 
         if resp is None:
             self.ui.estatusPais.setText("NO EXISTE")
@@ -243,15 +231,24 @@ class MiApp(QtWidgets.QMainWindow):
     # ------------------------------------Metodos para los lenguajes------------------------------------------------------
 
     def buscar_lenguaje(self):
-        nomlenguaje = self.ui.idLenguaje.text()
-        nomlenguaje = str("'" + nomlenguaje + "'")
+        # set table and query
+        sql = Query()
+        sql.append_tables('countrylanguage as l')
 
-        if nomlenguaje != '\'\'':
-            datos = self.datosTotal.busca_lenguaje(nomlenguaje)
-        else:
-            datos = self.datosTotal.buscar_lenguajes()
+        # parameters
+        set_parameters(sql, self.cbxes_lang)
+        if not sql.parameters:
+            sql.append_parameters(self.datosTotal.get_column_names('countrylanguage'))
 
-        set_items(datos, self.ui.tableLenguaje)
+        # set table
+        set_tabla_busqueda(sql, self.ui.tabla_busqueda)
+
+        name_l = self.ui.codigoLenguaje_A.text()
+        if not name_l.__eq__(''):
+            sql.append_wheres("l.language like '{}'".format(name_l))
+        datos = self.datosTotal.buscar(sql.get_query())
+
+        set_items(datos, self.ui.tabla_busqueda)
 
     def insert_lenguaje(self):
 
@@ -302,10 +299,10 @@ class MiApp(QtWidgets.QMainWindow):
         for data in autofill:
             self.ui.upCountryCodel.setText(str(data[0]))
             self.ui.upLenguajel.setText(str(data[1]))
-            if(str(data[2])=="T"):
+            if (str(data[2]) == "T"):
                 self.ui.radioSi_lan.setChecked(True)
                 self.ui.radioNo_lan.setChecked(False)
-            elif(str(data[2])=="F"):
+            elif (str(data[2]) == "F"):
                 self.ui.radioNo_lan.setChecked(True)
                 self.ui.radioSi_lan.setChecked(False)
             self.ui.upOfficiall.setText(str(data[2]))
@@ -317,27 +314,35 @@ class MiApp(QtWidgets.QMainWindow):
         uplenguaje = self.ui.upLenguajel.text()
         upporcentaje = self.ui.upPorcentajel.text()
 
-        if(self.ui.radioSi_lan.isChecked()==True):
-            upesofficial='T'
-        elif(self.ui.radioNo_lan.isChecked()==True):
-            upesofficial='F'
-
-
+        if (self.ui.radioSi_lan.isChecked() == True):
+            upesofficial = 'T'
+        elif (self.ui.radioNo_lan.isChecked() == True):
+            upesofficial = 'F'
 
         self.datosTotal.actualiza_lenguaje(upcodigopaisl, uplenguaje, upesofficial, upporcentaje)
 
     # ------------------------------------Metodos para las ciudades------------------------------------------------------
 
     def buscar_ciudad(self):
-        busid = self.ui.idCiudad.text()
-        busid = str("'" + busid + "'")
+        # set table and query
+        sql = Query()
+        sql.append_tables('city as c')
 
-        if busid != '\'\'':
-            datos = self.datosTotal.busca_ciudad(busid)
-        else:
-            datos = self.datosTotal.buscar_ciudades()
+        # parameters
+        set_parameters(sql, self.cbxes_ciudad)
+        if not sql.parameters:
+            sql.append_parameters(self.datosTotal.get_column_names('city'))
 
-        set_items(datos, self.ui.tableCiudad)
+        # set tables
+        set_tabla_busqueda(sql, self.ui.tabla_busqueda)
+
+        # decide what to look for
+        name_c = self.ui.codigoCiudad_A.text()
+        if not name_c.__eq__(''):
+            sql.append_wheres("c.name like '{}'".format(name_c))
+        datos = self.datosTotal.buscar(sql.get_query())
+
+        set_items(datos, self.ui.tabla_busqueda)
 
     def insert_ciudad(self):
 
@@ -439,7 +444,12 @@ class MiApp(QtWidgets.QMainWindow):
 # ---------------------------------------Metodos para eliminar codigo repetido-------------------------------------------
 def set_items(datos, table):
     n_rows = len(datos)
-    n_columns = len(datos[0])
+    n_columns = 0
+    try:
+        n_columns = len(datos[0])
+    except:
+        print("No data was found")
+
     table.setRowCount(n_rows)
 
     for tablerow, row in enumerate(datos):
@@ -453,9 +463,8 @@ def set_parameters(query: Query, cbxes: dict):
             query.append_parameters(cbxes[box])
 
 
-def set_tabla_busqueda(query: Query, datos, tabla):
-    parameters = query.get_parameters() if len(query.get_parameters()) > 0 else datos.get_column_names(
-        'country')
+def set_tabla_busqueda(query: Query, tabla):
+    parameters = query.get_parameters()
     i = 0
     for par in parameters:
         tabla.horizontalHeaderItem(i).setText(par)

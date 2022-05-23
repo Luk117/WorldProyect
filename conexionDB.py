@@ -12,16 +12,7 @@ class RegistroDatos():
                                                 autocommit=True)
 
     # -------------------------------Metodos de paises------------------------------------------------------------------
-
-    def busca_pais(self, codigop):
-        cursor = self.conexion.cursor()
-        sql = "SELECT * FROM country WHERE Code = {}".format(codigop)
-        cursor.execute(sql)
-        nombre_p = cursor.fetchall()
-        cursor.close()
-        return nombre_p
-
-    def busca_pais_query(self, query):
+    def buscar(self, query):
         cursor = self.conexion.cursor()
         cursor.execute(query)
         results = cursor.fetchall()
@@ -75,14 +66,6 @@ class RegistroDatos():
         return a
 
     # -------------------------------Metodos de Ciudades-------------------------------------------------------------------
-
-    def busca_ciudad(self, busid):
-        cursor = self.conexion.cursor()
-        sql = "SELECT * FROM city WHERE ID = {}".format(busid)
-        cursor.execute(sql)
-        nombreC = cursor.fetchall()
-        cursor.close()
-        return nombreC
 
     def agrega_ciudad(self, idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd):
         cursor = self.conexion.cursor()
@@ -173,5 +156,8 @@ class RegistroDatos():
         registro = cursor.fetchall()
         ans = []
         for column in registro:
-            ans.append(column[0])
-        return ans[3:]
+            if column[0] == 'last_update':
+                ans.clear()
+            else:
+                ans.append(column[0])
+        return ans

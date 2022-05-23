@@ -10,6 +10,7 @@ q = Query()
 q.append_parameters('p.Region')
 q.append_parameters('p.Population')
 q.append_parameters('p.IndepYear')
+q.append_parameters(['yehfbeb', 'heyufeuiefiuw', 'juwfuwfhwuiehf', 'hfuiwfwijfw'])
 
 q.append_tables('country as p')
 

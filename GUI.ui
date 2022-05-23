@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>0</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -33,7 +33,7 @@
      <attribute name="title">
       <string>Busqueda</string>
      </attribute>
-     <widget class="QTableWidget" name="tabla_pais">
+     <widget class="QTableWidget" name="tabla_busqueda">
       <property name="geometry">
        <rect>
         <x>570</x>
@@ -44,77 +44,77 @@
       </property>
       <column>
        <property name="text">
-        <string>Codigo</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Nombre</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Continente</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Region</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Surface Area</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>indepepyear</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Poblacion</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Expectativa</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>GNP</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>GNPOid</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Nombre Local</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Forma de Gob</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Cabeza de Estado</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Capital</string>
+        <string/>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Codigo2</string>
+        <string/>
        </property>
       </column>
      </widget>
@@ -128,7 +128,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Busqueda simple&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;Busqueda&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="textFormat">
        <enum>Qt::AutoText</enum>
@@ -495,11 +495,11 @@
        <string>Lenguaje</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="bt_refreshpais_2">
+     <widget class="QPushButton" name="bt_busqueda_av">
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>410</y>
+        <y>390</y>
         <width>121</width>
         <height>41</height>
        </rect>
@@ -558,6 +558,36 @@
       </property>
       <property name="text">
        <string>Area</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="warning_label">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>450</y>
+        <width>511</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>Ingrese Nombres para una busqueda especifica o deje en blanco para buscar todo.
+
+Delimite la busqueda como prefiera seleccionando las cajas o dejandolas en blanco para buscar con todos los parametros</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+      <property name="indent">
+       <number>0</number>
       </property>
      </widget>
     </widget>
