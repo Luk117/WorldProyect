@@ -28,6 +28,9 @@ class MiApp(QtWidgets.QMainWindow):
         # busqueda avanzada
         self.ui.bt_busqueda_av.clicked.connect(self.busqueda_avanzada)
 
+        #clear busqueda
+        self.ui.bt_clear_busqueda.clicked.connect(self.clear_busqueda)
+
         # self.ui.bt_buscarpais_A.clicked.connect(self.busqueda('country as p'))
         # self.ui.bt_buscarciudad_A.clicked.connect(self.busqueda('city as c'))
         # self.ui.bt_buscarlenguaje_A.clicked.connect(self.busqueda('countrylanguage'))
@@ -178,6 +181,21 @@ class MiApp(QtWidgets.QMainWindow):
             set_items(datos, self.ui.tabla_busqueda)
         else:
             self.error_msg("Debe seleccionar al menos un parametro o llenar un campo")
+
+    def clear_busqueda(self):
+        for par in self.cbxes_pais:
+            par.setChecked(False)
+        for par in self.cbxes_ciudad:
+            par.setChecked(False)
+        for par in self.cbxes_lang:
+            par.setChecked(False)
+
+        self.ui.codigoPais_A.setText('')
+        self.ui.codigoCiudad_A.setText('')
+        self.ui.codigoLenguaje_A.setText('')
+
+        for i in range(24):
+            self.ui.tabla_busqueda.setColumnHidden(i, True)
 
     def insert_pais(self):
         codigoadd = (self.ui.addCodep.text())

@@ -193,6 +193,9 @@ class Ui_MainWindow(object):
         self.cbx_c_id = QtWidgets.QCheckBox(self.tabPais)
         self.cbx_c_id.setGeometry(QtCore.QRect(410, 260, 141, 20))
         self.cbx_c_id.setObjectName("cbx_c_id")
+        self.bt_clear_busqueda = QtWidgets.QPushButton(self.tabPais)
+        self.bt_clear_busqueda.setGeometry(QtCore.QRect(1060, 530, 211, 41))
+        self.bt_clear_busqueda.setObjectName("bt_clear_busqueda")
         self.tablaCiudad.addTab(self.tabPais, "")
         self.agregarCampo = QtWidgets.QWidget()
         self.agregarCampo.setObjectName("agregarCampo")
@@ -660,7 +663,7 @@ class Ui_MainWindow(object):
         self.label_33.setBuddy(self.label_33)
 
         self.retranslateUi(MainWindow)
-        self.tablaCiudad.setCurrentIndex(3)
+        self.tablaCiudad.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -703,6 +706,7 @@ class Ui_MainWindow(object):
 " - Seleccione los parámetros y/o rellene los campos que quiere ver de cada tabla y presione el botón de ‘Busqueda avanzada’. \n"
 ""))
         self.cbx_c_id.setText(_translate("MainWindow", "ID"))
+        self.bt_clear_busqueda.setText(_translate("MainWindow", "Clear"))
         self.tablaCiudad.setTabText(self.tablaCiudad.indexOf(self.tabPais), _translate("MainWindow", "Busqueda"))
         self.label_4.setText(_translate("MainWindow", "*Codigo (3 digitos)"))
         self.label_5.setText(_translate("MainWindow", "*Nombre"))

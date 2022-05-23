@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -646,6 +646,19 @@
       </property>
       <property name="text">
        <string>ID</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="bt_clear_busqueda">
+      <property name="geometry">
+       <rect>
+        <x>1060</x>
+        <y>530</y>
+        <width>211</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Clear</string>
       </property>
      </widget>
     </widget>
