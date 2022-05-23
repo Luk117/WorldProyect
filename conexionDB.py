@@ -186,7 +186,7 @@ class RegistroDatos:
         cursor.close()
         return ans
 
-    def buscar_paises(self):
+    def get_paises(self):
         cursor = self.conexion.cursor()
         sql = "SELECT * FROM country"
         cursor.execute(sql)
