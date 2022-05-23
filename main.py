@@ -13,6 +13,7 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         self.conexion_db = RegistroDatos()
+        self.btn_Pais=False
 
         # Acciones de Boton
 
@@ -106,6 +107,9 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.tableCiudad.setColumnWidth(3, 100)
         self.ui.tableCiudad.setColumnWidth(4, 100)
 
+
+
+
     # def busqueda(self, tables):
     #     sql = Query()
     #     sql.append_tables(tables)
@@ -192,17 +196,8 @@ class MiApp(QtWidgets.QMainWindow):
 
     def actualizar_pais(self):
         if((str(self.ui.codigoPaisUp.text())=="")):
-
-            msg = QMessageBox()
-            msg.setIcon(QMessageBox.Warning)
-
-            msg.setText("¡Debe ingresar el codigo del país a actualizar!")
-
-            msg.setWindowTitle("Advertencia")
-
-            msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-
-            retval = msg.exec_()
+            msg = "¡Debe ingresar el codigo del país a actualizar!"
+            self.error_msg(msg)
         else:
 
             codigoadd = (self.ui.codigoPaisUp.text())
@@ -225,6 +220,26 @@ class MiApp(QtWidgets.QMainWindow):
                                             independenciaadd, poblacionpadd, expectativaadd, gnpadd, gnpoldadd,
                                             localnameadd,
                                             gobiernoadd, cabezadeestadoadd, capitaladd, codigo2add)
+
+            msg="¡Se ha actualizado el pais!"
+
+
+            self.ui.codigoPaisUp.clear()
+            self.ui.upNamep.clear()
+            self.ui.upContientep.clear()
+            self.ui.upRegionp.clear()
+            self.ui.upSurfacep.clear()
+            self.ui.upIndp.clear()
+            self.ui.upPoblacionp.clear()
+            self.ui.upGnpp.clear()
+            self.ui.upGnoidp.clear()
+            self.ui.upNomlocalp.clear()
+            self.ui.upExpectp.clear()
+            self.ui.upFormGovp.clear()
+            self.ui.upCabEstp.clear()
+            self.ui.upCapitalp.clear()
+            self.ui.upCode2p.clear()
+
 
     def fillact_pais(self):
         codigorr = str(self.ui.codigoPaisUp.text())
@@ -440,9 +455,41 @@ class MiApp(QtWidgets.QMainWindow):
             self.ui.upCountryCodec.setText(str(data[2]))
             self.ui.upDistritoc.setText(str(data[3]))
             self.ui.upPoblacionc.setText(str(data[4]))
+    #Metodo Pop Up Errores
+    def error_msg(self, error):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Warning)
+
+        msg.setText(error)
+
+        msg.setWindowTitle("Advertencia")
+
+        msg.setStandardButtons(QMessageBox.Ok)
+
+        retval = msg.exec_()
+    #Metodo Pop Up Informacion
+    def info_msg(self, info):
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+
+        msg.setText(info)
+
+        msg.setWindowTitle("Información")
+
+        msg.setStandardButtons(QMessageBox.Ok)
+
+        retval = msg.exec_()
 
 
-# if __name__ == "__main__":
+
+
+
+
+
+
+
+
+        # if __name__ == "__main__":
 # import sys
 # app = QtWidgets.QApplication(sys.argv)
 # MainWindow = QtWidgets.QMainWindow()
@@ -482,6 +529,7 @@ def set_tabla_busqueda(query: Query, tabla):
         i += 1
     for j in range(i, 15):
         tabla.setColumnHidden(j, True)
+
 
 
 # if __name__ == "__main__":
