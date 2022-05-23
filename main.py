@@ -68,6 +68,8 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.upCiudad.clicked.connect(self.actualizar_ciudad)
         self.ui.upLengua.clicked.connect(self.actualizar_lan)
 
+
+
         # FillUpdates
         self.ui.codigoPaisUp.returnPressed.connect(self.fillact_pais)
         self.ui.idCiudadup.returnPressed.connect(self.fillact_city)
@@ -196,7 +198,7 @@ class MiApp(QtWidgets.QMainWindow):
 
     def actualizar_pais(self):
         if((str(self.ui.codigoPaisUp.text())=="")):
-            msg = "¡Debe ingresar el codigo del país a actualizar!"
+            msg = "¡Debe ingresar el código del país a actualizar!"
             self.error_msg(msg)
         else:
 
@@ -221,8 +223,8 @@ class MiApp(QtWidgets.QMainWindow):
                                             localnameadd,
                                             gobiernoadd, cabezadeestadoadd, capitaladd, codigo2add)
 
-            msg="¡Se ha actualizado el pais!"
-
+            msg="¡Se ha actualizado el país!"
+            self.info_msg(msg)
 
             self.ui.codigoPaisUp.clear()
             self.ui.upNamep.clear()
@@ -335,16 +337,22 @@ class MiApp(QtWidgets.QMainWindow):
 
     def actualizar_lan(self):
 
-        upcodigopaisl = self.ui.upCountryCodel.text()
-        uplenguaje = self.ui.upLenguajel.text()
-        upporcentaje = self.ui.upPorcentajel.text()
+        if((str(self.ui.codLenguaup.text())=="") & (str(self.ui.codeCUpLanc.text())=="")):
+            msg = "¡Debe ingresar el código del país y el  lenguaje a actualizar!"
+            self.error_msg(msg)
+        else:
+            upcodigopaisl = self.ui.upCountryCodel.text()
+            uplenguaje = self.ui.upLenguajel.text()
+            upporcentaje = self.ui.upPorcentajel.text()
 
-        if (self.ui.radioSi_lan.isChecked() == True):
-            upesofficial = 'T'
-        elif (self.ui.radioNo_lan.isChecked() == True):
-            upesofficial = 'F'
+            if (self.ui.radioSi_lan.isChecked() == True):
+                upesofficial = 'T'
+            elif (self.ui.radioNo_lan.isChecked() == True):
+                upesofficial = 'F'
 
-        self.conexion_db.actualiza_lenguaje(upcodigopaisl, uplenguaje, upesofficial, upporcentaje)
+            self.conexion_db.actualiza_lenguaje(upcodigopaisl, uplenguaje, upesofficial, upporcentaje)
+            msg="¡Se ha actualizado el lenguaje de este país!"
+            self.info_msg(msg)
 
     # ------------------------------------Metodos para las ciudades------------------------------------------------------
 
@@ -435,14 +443,20 @@ class MiApp(QtWidgets.QMainWindow):
     #         self.ui.id_buscar.setText("NO EXISTE")
 
     def actualizar_ciudad(self):
+        if((str(self.ui.idCiudadup.text())=="")):
+            msg = "¡Debe ingresar el código de la ciudad a actualizar!"
+            self.error_msg(msg)
+        else:
+            idadd = str(self.ui.idCiudadup.text())
+            nombrecadd = str(self.ui.upNombrec.text())
+            codigopaiscadd = str(self.ui.upCountryCodec.text())
+            distritoadd = str(self.ui.upDistritoc.text())
+            poblacioncadd = str(self.ui.upPoblacionc.text())
 
-        idadd = str(self.ui.upIDc.text())
-        nombrecadd = str(self.ui.upNombrec.text())
-        codigopaiscadd = str(self.ui.upCountryCodec.text())
-        distritoadd = str(self.ui.upDistritoc.text())
-        poblacioncadd = str(self.ui.upPoblacionc.text())
+            self.conexion_db.actualiza_ciudad(idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
+            msg="¡Se ha actualizado la ciudad!"
+            self.info_msg(msg)
 
-        self.conexion_db.actualiza_ciudad(idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
 
     def fillact_city(self):
         codigorr = str(self.ui.idCiudadup.text())

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -1630,7 +1630,7 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="upGnpp">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>320</x>
         <y>110</y>
         <width>91</width>
         <height>22</height>
@@ -1660,7 +1660,7 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="upGnoidp">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>320</x>
         <y>150</y>
         <width>91</width>
         <height>22</height>
@@ -1703,7 +1703,7 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="upFormGovp">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>320</x>
         <y>230</y>
         <width>91</width>
         <height>22</height>
@@ -1713,7 +1713,7 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="upNomlocalp">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>320</x>
         <y>190</y>
         <width>91</width>
         <height>22</height>
@@ -1847,7 +1847,7 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="upCode2p">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>320</x>
         <y>350</y>
         <width>91</width>
         <height>22</height>
@@ -1896,7 +1896,7 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="upCapitalp">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>320</x>
         <y>310</y>
         <width>91</width>
         <height>22</height>
@@ -1919,7 +1919,7 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="upCabEstp">
       <property name="geometry">
        <rect>
-        <x>330</x>
+        <x>320</x>
         <y>270</y>
         <width>91</width>
         <height>22</height>
@@ -2126,9 +2126,9 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="upPais">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>420</y>
-        <width>201</width>
+        <x>120</x>
+        <y>400</y>
+        <width>211</width>
         <height>24</height>
        </rect>
       </property>
@@ -2160,72 +2160,6 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>Actualizar Lenguaje</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="estatusAcPais">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>410</y>
-        <width>201</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(158, 218, 255);</string>
-      </property>
-      <property name="text">
-       <string>ESTATUS</string>
-      </property>
-      <property name="autoDefault">
-       <bool>false</bool>
-      </property>
-      <property name="default">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="estatusAcCiudad">
-      <property name="geometry">
-       <rect>
-        <x>580</x>
-        <y>320</y>
-        <width>151</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(158, 218, 255);</string>
-      </property>
-      <property name="text">
-       <string>ESTATUS</string>
-      </property>
-      <property name="autoDefault">
-       <bool>false</bool>
-      </property>
-      <property name="default">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="estatusAcPais_3">
-      <property name="geometry">
-       <rect>
-        <x>1030</x>
-        <y>230</y>
-        <width>171</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(158, 218, 255);</string>
-      </property>
-      <property name="text">
-       <string>ESTATUS</string>
-      </property>
-      <property name="autoDefault">
-       <bool>false</bool>
-      </property>
-      <property name="default">
-       <bool>false</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_7">
@@ -2343,6 +2277,54 @@ color: rgb(255, 255, 255);</string>
       </property>
       <property name="orientation">
        <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_39">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>390</y>
+        <width>471</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Para que se autocomplete la busqueda, presione enter al digitar el codigo, id o lenguaje.</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::AutoText</enum>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
+      </property>
+      <property name="indent">
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="Line" name="line_4">
+      <property name="geometry">
+       <rect>
+        <x>430</x>
+        <y>390</y>
+        <width>461</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="Line" name="line_5">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>400</y>
+        <width>461</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </widget>
