@@ -45,17 +45,18 @@ class MiApp(QtWidgets.QMainWindow):
         }
 
         self.cbxes_ciudad = {
+            self.ui.cbx_c_id: 'c.id',
+            self.ui.cbx_c_name: 'c.name',
             self.ui.cbx_c_country: 'c.CountryCode',  # look into how to actually show the country not the code
             self.ui.cbx_c_district: 'c.District',
-            self.ui.cbx_c_name: 'c.name',
             self.ui.cbx_c_population: 'c.population',
         }
 
         self.cbxes_lang = {
-            self.ui.cbx_l_isOfficial: 'l.IsOfficial',
-            self.ui.cbx_l_country: 'l.CountryCode',  # look into how to actually show the country not the code
             self.ui.cbx_l_lang: 'l.Language',
+            self.ui.cbx_l_isOfficial: 'l.IsOfficial',
             self.ui.cbx_l_percentage: 'l.Percentage',
+            self.ui.cbx_l_country: 'l.CountryCode',  # look into how to actually show the country not the code
         }
 
         # Eliminar
@@ -98,17 +99,6 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.tabla_busqueda.setColumnWidth(14, 200)
         self.ui.tabla_busqueda.setColumnWidth(15, 200)
 
-        self.ui.tableLenguaje.setColumnWidth(0, 100)
-        self.ui.tableLenguaje.setColumnWidth(1, 100)
-        self.ui.tableLenguaje.setColumnWidth(2, 100)
-        self.ui.tableLenguaje.setColumnWidth(3, 100)
-
-        self.ui.tableCiudad.setColumnWidth(0, 100)
-        self.ui.tableCiudad.setColumnWidth(1, 100)
-        self.ui.tableCiudad.setColumnWidth(2, 100)
-        self.ui.tableCiudad.setColumnWidth(3, 100)
-        self.ui.tableCiudad.setColumnWidth(4, 100)
-
 
 
 
@@ -124,8 +114,7 @@ class MiApp(QtWidgets.QMainWindow):
         sql.append_tables('country as p')
 
         # parameters
-        set_parameters(sql, self.cbxes_pais)
-        if not sql.parameters:
+        if not set_parameters(sql, self.cbxes_pais):
             sql.append_parameters(self.conexion_db.get_column_names('country'))
 
         # set table
@@ -140,7 +129,55 @@ class MiApp(QtWidgets.QMainWindow):
         set_items(datos, self.ui.tabla_busqueda)
 
     def busqueda_avanzada(self):
-        pass
+        query = Query()
+
+        # define which tables and parameters are being used
+        name_p = self.ui.codigoPais_A.text()
+        name_c = self.ui.codigoCiudad_A.text()
+        name_l = self.ui.codigoLenguaje_A.text()
+
+        country_used = set_parameters(query, self.cbxes_pais) or bool(name_p)
+        city_used = set_parameters(query, self.cbxes_ciudad) or bool(name_c)
+        language_used = set_parameters(query, self.cbxes_lang) or bool(name_l)
+
+        if country_used or city_used or language_used:
+            using_parameters = bool(query.parameters)
+            if country_used:
+                query.append_tables('country as p')
+                if not using_parameters:
+                    query.append_parameters(self.conexion_db.get_column_names('country'))
+            if city_used:
+                query.append_tables('city as c')
+                if not using_parameters:
+                    query.append_parameters(self.conexion_db.get_column_names('city'))
+            if language_used:
+                query.append_tables('countrylanguage as l')
+                if not using_parameters:
+                    query.append_parameters(self.conexion_db.get_column_names('countrylanguage'))
+
+            # set table
+            set_tabla_busqueda(query, self.ui.tabla_busqueda)
+
+            # decide connections
+            if country_used and city_used:
+                query.append_wheres('p.code = c.countrycode')
+            if country_used and language_used:
+                query.append_wheres('p.code = l.countrycode')
+            if city_used and language_used:
+                query.append_wheres('c.countrycode = l.countrycode')
+
+            # decide what to look for
+            if bool(name_p):
+                query.append_wheres("p.name like '{}'".format(name_p))
+            if bool(name_c):
+                query.append_wheres("c.name like '{}'".format(name_c))
+            if bool(name_l):
+                query.append_wheres("l.language like '{}'".format(name_l))
+
+            datos = self.conexion_db.buscar(query.get_query())
+            set_items(datos, self.ui.tabla_busqueda)
+        else:
+            self.error_msg("Debe seleccionar al menos un parametro o llenar un campo")
 
     def insert_pais(self):
         codigoadd = (self.ui.addCodep.text())
@@ -520,6 +557,7 @@ def set_items(datos, table):
         n_columns = len(datos[0])
     except:
         print("No data was found")
+        mi_app.error_msg("No se encontraron datos")
 
     table.setRowCount(n_rows)
 
@@ -529,9 +567,13 @@ def set_items(datos, table):
 
 
 def set_parameters(query: Query, cbxes: dict):
+    added_parameters = False
     for box in cbxes:
         if box.isChecked():
+            added_parameters = True
             query.append_parameters(cbxes[box])
+    return added_parameters
+
 
 
 def set_tabla_busqueda(query: Query, tabla):
