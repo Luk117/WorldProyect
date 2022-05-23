@@ -36,10 +36,10 @@
      <widget class="QTableWidget" name="tabla_busqueda">
       <property name="geometry">
        <rect>
-        <x>570</x>
-        <y>10</y>
-        <width>601</width>
-        <height>451</height>
+        <x>580</x>
+        <y>30</y>
+        <width>681</width>
+        <height>471</height>
        </rect>
       </property>
       <column>
