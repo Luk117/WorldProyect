@@ -181,40 +181,52 @@ class MiApp(QtWidgets.QMainWindow):
 
     def insert_pais(self):
         codigoadd = (self.ui.addCodep.text())
+        if not codigoadd:
+            self.error_msg("Ingrese un codigo")
+            return -1
         nombrepadd = (self.ui.addNamep.text())
-        continenteadd = (self.ui.addContientep.text())
+        if not nombrepadd:
+            self.error_msg("Ingrese un Nombre")
+            return -1
+        continenteadd = (self.ui.addContientep.text()) or 'Asia'
         regionadd = (self.ui.addRegionp.text())
-        surfaceareaadd = (self.ui.addSurfacep.text())
-        independenciaadd = (self.ui.addIndp.text())
-        poblacionpadd = (self.ui.addPoblacionp.text())
-        expectativaadd = (self.ui.addExpectp.text())
-        gnpadd = (self.ui.addGnpp.text())
-        gnpoldadd = (self.ui.addGnoid.text())
+        surfaceareaadd = (self.ui.addSurfacep.text()) or '0'
+        independenciaadd = (self.ui.addIndp.text()) or '0'
+        poblacionpadd = (self.ui.addPoblacionp.text()) or '0'
+        expectativaadd = (self.ui.addExpectp.text()) or '0'
+        gnpadd = (self.ui.addGnpp.text()) or '0'
+        gnpoldadd = (self.ui.addGnoid.text()) or '0'
         localnameadd = (self.ui.addNomlocalp.text())
         gobiernoadd = (self.ui.addFormGovp.text())
         cabezadeestadoadd = (self.ui.addCabEstp.text())
-        capitaladd = (self.ui.addCapitalp.text())
+        capitaladd = (self.ui.addCapitalp.text()) or '0'
         codigo2add = (self.ui.addCode2p.text())
 
-        self.conexion_db.agrega_pais(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd, independenciaadd,
+        try:
+            self.conexion_db.agrega_pais(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd, independenciaadd,
                                      poblacionpadd, expectativaadd, gnpadd, gnpoldadd, localnameadd, gobiernoadd,
                                      cabezadeestadoadd, capitaladd, codigo2add)
+            self.ui.addCodep.clear()
+            self.ui.addNamep.clear()
+            self.ui.addContientep.clear()
+            self.ui.addRegionp.clear()
+            self.ui.addSurfacep.clear()
+            self.ui.addIndp.clear()
+            self.ui.addPoblacionp.clear()
+            self.ui.addGnpp.clear()
+            self.ui.addGnoid.clear()
+            self.ui.addNomlocalp.clear()
+            self.ui.addExpectp.clear()
+            self.ui.addFormGovp.clear()
+            self.ui.addCabEstp.clear()
+            self.ui.addCapitalp.clear()
+            self.ui.addCode2p.clear()
 
-        self.ui.addCodep.clear()
-        self.ui.addNamep.clear()
-        self.ui.addContientep.clear()
-        self.ui.addRegionp.clear()
-        self.ui.addSurfacep.clear()
-        self.ui.addIndp.clear()
-        self.ui.addPoblacionp.clear()
-        self.ui.addGnpp.clear()
-        self.ui.addGnoid.clear()
-        self.ui.addNomlocalp.clear()
-        self.ui.addExpectp.clear()
-        self.ui.addFormGovp.clear()
-        self.ui.addCabEstp.clear()
-        self.ui.addCapitalp.clear()
-        self.ui.addCode2p.clear()
+            self.info_msg("Pais agregado exitosamente")
+        except:
+            self.error_msg("Error al agregar pais: \n Recuerda revisar que todos los tipos de dato sean los adecuados")
+
+
 
     def eliminar_pais(self):
         codigoel = self.ui.codigoEliminarp.text()

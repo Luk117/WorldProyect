@@ -1,10 +1,9 @@
 import mysql.connector
 
 
-class RegistroDatos():
+class RegistroDatos:
 
-    def __init__(self):
-        password = input("password: ")
+    def __init__(self, password=input("password: ")):
         self.conexion = mysql.connector.connect(host="localhost",
                                                 database="world",
                                                 user="root",
@@ -182,6 +181,14 @@ class RegistroDatos():
     def get_ciudad_by_id(self, code):
         cursor = self.conexion.cursor()
         sql = "SELECT * FROM city WHERE id = {}".format(code)
+        cursor.execute(sql)
+        ans = cursor.fetchall()
+        cursor.close()
+        return ans
+
+    def buscar_paises(self):
+        cursor = self.conexion.cursor()
+        sql = "SELECT * FROM country"
         cursor.execute(sql)
         ans = cursor.fetchall()
         cursor.close()

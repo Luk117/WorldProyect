@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -689,7 +689,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>*Contienente</string>
+       <string>Continente</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_7">
@@ -702,7 +702,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>*Region</string>
+       <string>Region</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_8">
@@ -715,7 +715,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>*Surface Area</string>
+       <string>Surface Area</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_9">
@@ -793,7 +793,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>*Nombre Local</string>
+       <string>Nombre Local</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_15">
@@ -806,7 +806,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>*Forma de Gobierno</string>
+       <string>Forma de Gobierno</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_16">
@@ -857,6 +857,9 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>char(3)</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addNamep">
       <property name="geometry">
@@ -866,6 +869,9 @@
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>char(52)</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="addContientep">
@@ -877,6 +883,9 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>enum('Asia','Europe','North America','Africa','Oceania','Antarctica','South America')</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addRegionp">
       <property name="geometry">
@@ -886,6 +895,9 @@
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>char(26)</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="addSurfacep">
@@ -897,6 +909,9 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>decimal(10,2)</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addIndp">
       <property name="geometry">
@@ -906,6 +921,9 @@
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>smallint</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="addPoblacionp">
@@ -917,6 +935,9 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>int</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addExpectp">
       <property name="geometry">
@@ -926,6 +947,9 @@
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>decimal(3,1)</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="addGnpp">
@@ -937,6 +961,9 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>decimal(10,2)</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addGnoid">
       <property name="geometry">
@@ -946,6 +973,9 @@
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>decimal(10,2)</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="addNomlocalp">
@@ -957,6 +987,9 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>char(45)</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addFormGovp">
       <property name="geometry">
@@ -966,6 +999,9 @@
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>char(45)</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="addCabEstp">
@@ -977,6 +1013,9 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>char(60)</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addCapitalp">
       <property name="geometry">
@@ -987,6 +1026,9 @@
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>int (FK)</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addCode2p">
       <property name="geometry">
@@ -996,6 +1038,9 @@
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>char(2)</string>
       </property>
      </widget>
      <widget class="QPushButton" name="bt_Addpais">
@@ -1089,6 +1134,9 @@ color: rgb(255, 255, 255);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>int</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addNombrec">
       <property name="geometry">
@@ -1098,6 +1146,9 @@ color: rgb(255, 255, 255);</string>
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>char(35)</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="addCountryCodec">
@@ -1109,6 +1160,9 @@ color: rgb(255, 255, 255);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>char(3) (FK)</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addDistritoc">
       <property name="geometry">
@@ -1119,6 +1173,9 @@ color: rgb(255, 255, 255);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>char(20)</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addPoblacionc">
       <property name="geometry">
@@ -1128,6 +1185,9 @@ color: rgb(255, 255, 255);</string>
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>int</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_24">
@@ -1191,6 +1251,9 @@ color: rgb(255, 255, 255);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>char(3) (FK)</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addLenguajel">
       <property name="geometry">
@@ -1200,6 +1263,9 @@ color: rgb(255, 255, 255);</string>
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>char(30)</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="addOfficiall">
@@ -1211,6 +1277,9 @@ color: rgb(255, 255, 255);</string>
         <height>22</height>
        </rect>
       </property>
+      <property name="placeholderText">
+       <string>enum('T','F')</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="addPorcentajel">
       <property name="geometry">
@@ -1220,6 +1289,9 @@ color: rgb(255, 255, 255);</string>
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>decimal(4,1)</string>
       </property>
      </widget>
      <widget class="QPushButton" name="bt_AddCiudad">
@@ -1236,7 +1308,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string>Agregar CIudad</string>
+       <string>Agregar Ciudad</string>
       </property>
      </widget>
      <widget class="QPushButton" name="bt_AddLenguaje">
@@ -1298,8 +1370,8 @@ border-color: rgb(255, 255, 255);</string>
      <widget class="QLabel" name="label_28">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>140</y>
+        <x>280</x>
+        <y>130</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -1321,8 +1393,8 @@ border-color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="codigoEliminarp">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>140</y>
+        <x>360</x>
+        <y>130</y>
         <width>161</width>
         <height>22</height>
        </rect>
@@ -1331,8 +1403,8 @@ border-color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="bt_EliminarPais">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>170</y>
+        <x>360</x>
+        <y>160</y>
         <width>161</width>
         <height>31</height>
        </rect>
@@ -1348,8 +1420,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="estatusPais">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>140</y>
+        <x>550</x>
+        <y>130</y>
         <width>121</width>
         <height>61</height>
        </rect>
@@ -1366,9 +1438,9 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLabel" name="label_29">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>270</y>
-        <width>49</width>
+        <x>280</x>
+        <y>260</y>
+        <width>71</width>
         <height>16</height>
        </rect>
       </property>
@@ -1379,9 +1451,9 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLabel" name="label_30">
       <property name="geometry">
        <rect>
-        <x>70</x>
-        <y>390</y>
-        <width>49</width>
+        <x>280</x>
+        <y>380</y>
+        <width>71</width>
         <height>16</height>
        </rect>
       </property>
@@ -1392,8 +1464,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="codigoEliminarc">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>390</y>
+        <x>360</x>
+        <y>380</y>
         <width>161</width>
         <height>22</height>
        </rect>
@@ -1402,8 +1474,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="bt_EliminarCiudad">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>420</y>
+        <x>360</x>
+        <y>410</y>
         <width>161</width>
         <height>31</height>
        </rect>
@@ -1419,8 +1491,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="estatusCiudad">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>390</y>
+        <x>550</x>
+        <y>380</y>
         <width>121</width>
         <height>61</height>
        </rect>
@@ -1436,8 +1508,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QLineEdit" name="lineEdit_3">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>270</y>
+        <x>360</x>
+        <y>260</y>
         <width>161</width>
         <height>22</height>
        </rect>
@@ -1446,8 +1518,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="estatusLenguaje">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>270</y>
+        <x>550</x>
+        <y>260</y>
         <width>121</width>
         <height>61</height>
        </rect>
@@ -1463,8 +1535,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="bt_EliminarLenguaje">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>300</y>
+        <x>360</x>
+        <y>290</y>
         <width>161</width>
         <height>31</height>
        </rect>
@@ -1480,8 +1552,8 @@ color: rgb(255, 255, 255);</string>
      <widget class="QPushButton" name="pushButton_3">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>90</y>
+        <x>720</x>
+        <y>80</y>
         <width>321</width>
         <height>401</height>
        </rect>
