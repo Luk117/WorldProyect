@@ -1,7 +1,7 @@
-from conexionDB import *
+from ConexionDB import *
 from Query import *
 
-conexion_db = RegistroDatos('jd4130201')
+conexion_db = ConexionBD('jd4130201')
 
 codigoadd = ''
 nombrepadd = ''

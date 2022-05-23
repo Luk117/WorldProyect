@@ -1,7 +1,7 @@
 import mysql.connector
 
 
-class RegistroDatos:
+class ConexionBD:
 
     def __init__(self, password=input("password: ")):
         self.conexion = mysql.connector.connect(host="localhost",

@@ -1,6 +1,6 @@
 import sys
 from GUI import *
-from conexionDB import *
+from ConexionDB import *
 from Query import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem, QMessageBox
@@ -12,9 +12,7 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.conexion_db = RegistroDatos()
-        self.btn_Pais=False
-
+        self.conexion_db = ConexionBD()
         # Acciones de Boton
 
         # Mostrar todos los datos
@@ -251,7 +249,7 @@ class MiApp(QtWidgets.QMainWindow):
         codigoel = str("'" + codigoel + "'")
 
         resp = (self.conexion_db.elimina_pais(codigoel))
-        datos = self.conexion_db.buscar_paises()
+        datos = self.conexion_db.get_paises()
 
         set_items(datos, self.ui.tabla_busqueda)
 
