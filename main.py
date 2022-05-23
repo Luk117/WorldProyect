@@ -12,7 +12,7 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.datosTotal = RegistroDatos()
+        self.conexion_db = RegistroDatos()
 
         # Acciones de Boton
 
@@ -67,7 +67,7 @@ class MiApp(QtWidgets.QMainWindow):
         # FillUpdates
         self.ui.codigoPaisUp.returnPressed.connect(self.fillact_pais)
         self.ui.idCiudadup.returnPressed.connect(self.fillact_city)
-        self.ui.codeCUpLanc.returnPressed.connect(self.fillact_lan)
+        self.ui.codeCUpLanc.returnPressed.connect(self.autofill_lan)
 
         # Ingresar dato
         self.ui.bt_Addpais.clicked.connect(self.insert_pais)
@@ -117,7 +117,7 @@ class MiApp(QtWidgets.QMainWindow):
         # parameters
         set_parameters(sql, self.cbxes_pais)
         if not sql.parameters:
-            sql.append_parameters(self.datosTotal.get_column_names('country'))
+            sql.append_parameters(self.conexion_db.get_column_names('country'))
 
         # set table
         set_tabla_busqueda(sql, self.ui.tabla_busqueda)
@@ -126,7 +126,7 @@ class MiApp(QtWidgets.QMainWindow):
         name_p = self.ui.codigoPais_A.text()
         if not name_p.__eq__(''):
             sql.append_wheres("p.name like '{}'".format(name_p))
-        datos = self.datosTotal.buscar(sql.get_query())
+        datos = self.conexion_db.buscar(sql.get_query())
 
         set_items(datos, self.ui.tabla_busqueda)
 
@@ -147,9 +147,9 @@ class MiApp(QtWidgets.QMainWindow):
         capitaladd = (self.ui.addCapitalp.text())
         codigo2add = (self.ui.addCode2p.text())
 
-        self.datosTotal.agrega_pais(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd, independenciaadd,
-                                    poblacionpadd, expectativaadd, gnpadd, gnpoldadd, localnameadd, gobiernoadd,
-                                    cabezadeestadoadd, capitaladd, codigo2add)
+        self.conexion_db.agrega_pais(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd, independenciaadd,
+                                     poblacionpadd, expectativaadd, gnpadd, gnpoldadd, localnameadd, gobiernoadd,
+                                     cabezadeestadoadd, capitaladd, codigo2add)
 
         self.ui.addCodep.clear()
         self.ui.addNamep.clear()
@@ -171,8 +171,8 @@ class MiApp(QtWidgets.QMainWindow):
         codigoel = self.ui.codigoEliminarp.text()
         codigoel = str("'" + codigoel + "'")
 
-        resp = (self.datosTotal.elimina_pais(codigoel))
-        datos = self.datosTotal.buscar_paises()
+        resp = (self.conexion_db.elimina_pais(codigoel))
+        datos = self.conexion_db.buscar_paises()
 
         set_items(datos, self.ui.tabla_busqueda)
 
@@ -214,14 +214,14 @@ class MiApp(QtWidgets.QMainWindow):
             capitaladd = (self.ui.upCapitalp.text())
             codigo2add = (self.ui.upCode2p.text())
 
-            self.datosTotal.actualiza_pais(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd,
+            self.conexion_db.actualiza_pais(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd,
                                            independenciaadd, poblacionpadd, expectativaadd, gnpadd, gnpoldadd, localnameadd,
                                            gobiernoadd, cabezadeestadoadd, capitaladd, codigo2add)
 
     def fillact_pais(self):
         codigorr = str(self.ui.codigoPaisUp.text())
         codigorr = ("'" + codigorr + "'")
-        autofill = self.datosTotal.busca_pais(codigorr)
+        autofill = self.conexion_db.get_pais_by_code(codigorr)
 
         for data in autofill:
             self.ui.upCodep.setText(str(data[0]))
@@ -250,7 +250,7 @@ class MiApp(QtWidgets.QMainWindow):
         # parameters
         set_parameters(sql, self.cbxes_lang)
         if not sql.parameters:
-            sql.append_parameters(self.datosTotal.get_column_names('countrylanguage'))
+            sql.append_parameters(self.conexion_db.get_column_names('countrylanguage'))
 
         # set table
         set_tabla_busqueda(sql, self.ui.tabla_busqueda)
@@ -258,7 +258,7 @@ class MiApp(QtWidgets.QMainWindow):
         name_l = self.ui.codigoLenguaje_A.text()
         if not name_l.__eq__(''):
             sql.append_wheres("l.language like '{}'".format(name_l))
-        datos = self.datosTotal.buscar(sql.get_query())
+        datos = self.conexion_db.buscar(sql.get_query())
 
         set_items(datos, self.ui.tabla_busqueda)
 
@@ -269,7 +269,7 @@ class MiApp(QtWidgets.QMainWindow):
         addesofficial = self.ui.addOfficiall.text()
         addporcentaje = self.ui.addPorcentajel.text()
 
-        self.datosTotal.agrega_lenguaje(addcodigopaisl, addlenguaje, addesofficial, addporcentaje)
+        self.conexion_db.agrega_lenguaje(addcodigopaisl, addlenguaje, addesofficial, addporcentaje)
 
         self.ui.addCountryCodel.clear()
         self.ui.addLenguajel.clear()
@@ -280,33 +280,24 @@ class MiApp(QtWidgets.QMainWindow):
         lenguajedel = self.ui.lineEdit_3.text()
         lenguajedel = ("'" + lenguajedel + "'")
 
-        resp = (self.datosTotal.elimina_lenguaje(lenguajedel))
-        datos = self.datosTotal.buscar_lenguajes()
-        i = len(datos)
+        resp = (self.conexion_db.elimina_lenguaje(lenguajedel))
+        datos = self.conexion_db.get_lenguajes()
 
-        self.ui.tableLenguaje.setRowCount(i)
-        tablerow = 0
-        for row in datos:
-            self.ui.tableLenguaje.setItem(tablerow, 0, QtWidgets.QTableWidgetItem(str(row[0])))
-            self.ui.tableLenguaje.setItem(tablerow, 1, QtWidgets.QTableWidgetItem(str(row[1])))
-            self.ui.tableLenguaje.setItem(tablerow, 2, QtWidgets.QTableWidgetItem(str(row[2])))
-            self.ui.tableLenguaje.setItem(tablerow, 3, QtWidgets.QTableWidgetItem(str(row[3])))
-            tablerow += 1
+        set_items(datos, self.ui.tableLenguaje)
 
-        if resp == None:
+        if resp is None:
             self.ui.estatusLenguaje.setText("NO EXISTE")
         elif resp == 0:
             self.ui.estatusLenguaje.setText("NO EXISTE")
-
         else:
             self.ui.estatusLenguaje.setText("SE ELIMINO")
 
-    def fillact_lan(self):
+    def autofill_lan(self):
         codigorr = str(self.ui.codLenguaup.text())
         codigorr = ("'" + codigorr + "'")
-        codigopais = str(self.ui.codeCUpLanc.text())
-        codigopais = ("'" + codigopais + "'")
-        autofill = self.datosTotal.busca_lenguajeYpais(codigorr, codigopais)
+        codigo_pais = str(self.ui.codeCUpLanc.text())
+        codigo_pais = ("'" + codigo_pais + "'")
+        autofill = self.conexion_db.busca_lenguajeYpais(codigorr, codigo_pais)
 
         for data in autofill:
             self.ui.upCountryCodel.setText(str(data[0]))
@@ -331,7 +322,7 @@ class MiApp(QtWidgets.QMainWindow):
         elif (self.ui.radioNo_lan.isChecked() == True):
             upesofficial = 'F'
 
-        self.datosTotal.actualiza_lenguaje(upcodigopaisl, uplenguaje, upesofficial, upporcentaje)
+        self.conexion_db.actualiza_lenguaje(upcodigopaisl, uplenguaje, upesofficial, upporcentaje)
 
     # ------------------------------------Metodos para las ciudades------------------------------------------------------
 
@@ -343,7 +334,7 @@ class MiApp(QtWidgets.QMainWindow):
         # parameters
         set_parameters(sql, self.cbxes_ciudad)
         if not sql.parameters:
-            sql.append_parameters(self.datosTotal.get_column_names('city'))
+            sql.append_parameters(self.conexion_db.get_column_names('city'))
 
         # set tables
         set_tabla_busqueda(sql, self.ui.tabla_busqueda)
@@ -352,7 +343,7 @@ class MiApp(QtWidgets.QMainWindow):
         name_c = self.ui.codigoCiudad_A.text()
         if not name_c.__eq__(''):
             sql.append_wheres("c.name like '{}'".format(name_c))
-        datos = self.datosTotal.buscar(sql.get_query())
+        datos = self.conexion_db.buscar(sql.get_query())
 
         set_items(datos, self.ui.tabla_busqueda)
 
@@ -364,7 +355,7 @@ class MiApp(QtWidgets.QMainWindow):
         distritoadd = str(self.ui.addDistritoc.text())
         poblacioncadd = str(self.ui.addPoblacionc.text())
 
-        self.datosTotal.agrega_ciudad(idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
+        self.conexion_db.agrega_ciudad(idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
 
         self.ui.addIDc.clear()
         self.ui.addNombrec.clear()
@@ -376,8 +367,8 @@ class MiApp(QtWidgets.QMainWindow):
         delid = self.ui.codigoEliminarc.text()
         delid = ("'" + delid + "'")
 
-        resp = (self.datosTotal.elimina_ciudad(delid))
-        datos = self.datosTotal.buscar_ciudades()
+        resp = (self.conexion_db.elimina_ciudad(delid))
+        datos = self.conexion_db.get_ciudades()
 
         set_items(datos, self.ui.tableCiudad)
 
@@ -392,7 +383,7 @@ class MiApp(QtWidgets.QMainWindow):
     def modificar_ciudades(self):
         id_producto = self.ui.id_producto.text()
         id_producto = str("'" + id_producto + "'")
-        nombreXX = self.datosTotal.busca_producto(id_producto)
+        nombreXX = self.conexion_db.busca_producto(id_producto)
 
         if nombreXX != None:
 
@@ -404,7 +395,7 @@ class MiApp(QtWidgets.QMainWindow):
             precioM = self.ui.precio_actualizar.text()
             cantidadM = self.ui.cantidad_actualizar.text()
 
-            act = self.datosTotal.actualiza_productos(codigoM, nombreM, modeloM, precioM, cantidadM)
+            act = self.conexion_db.actualiza_productos(codigoM, nombreM, modeloM, precioM, cantidadM)
             if act == 1:
                 self.ui.id_buscar.setText("ACTUALIZADO")
                 self.ui.codigo_actualizar.clear()
@@ -429,12 +420,12 @@ class MiApp(QtWidgets.QMainWindow):
         distritoadd = str(self.ui.upDistritoc.text())
         poblacioncadd = str(self.ui.upPoblacionc.text())
 
-        self.datosTotal.actualiza_ciudad(idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
+        self.conexion_db.actualiza_ciudad(idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
 
     def fillact_city(self):
         codigorr = str(self.ui.idCiudadup.text())
         codigorr = ("'" + codigorr + "'")
-        autofill = self.datosTotal.busca_ciudad(codigorr)
+        autofill = self.conexion_db.get_ciudad_by_id(codigorr)
 
         for data in autofill:
             self.ui.upIDc.setText(str(data[0]))
@@ -500,4 +491,3 @@ if __name__ == "__main__":
     mi_app = MiApp()
     mi_app.show()
     sys.exit(app.exec_())
-c

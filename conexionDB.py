@@ -94,14 +94,7 @@ class RegistroDatos():
         cur.close()
         return a
 
-    # -------------------------------Metodos de lenguajes-------------------------------------------------------------------
-
-    def buscar_lenguajes(self):
-        cursor = self.conexion.cursor()
-        sql = "SELECT * FROM Countrylanguage"
-        cursor.execute(sql)
-        registro = cursor.fetchall()
-        return registro
+    # -------------------------------Metodos de lenguajes---------------------------------------------------------------
 
     def busca_lenguaje(self, nomlenguaje):
         cursor = self.conexion.cursor()
@@ -160,4 +153,36 @@ class RegistroDatos():
                 ans.clear()
             else:
                 ans.append(column[0])
+        return ans
+
+    def get_pais_by_code(self, code):
+        cursor = self.conexion.cursor()
+        sql = "SELECT * FROM Country WHERE code = {}".format(code)
+        cursor.execute(sql)
+        ans = cursor.fetchall()
+        cursor.close()
+        return ans
+
+    def get_lenguajes(self):
+        cursor = self.conexion.cursor()
+        sql = "SELECT * FROM CountryLanguage"
+        cursor.execute(sql)
+        ans = cursor.fetchall()
+        cursor.close()
+        return ans
+
+    def get_ciudades(self):
+        cursor = self.conexion.cursor()
+        sql = "SELECT * FROM City"
+        cursor.execute(sql)
+        ans = cursor.fetchall()
+        cursor.close()
+        return ans
+
+    def get_ciudad_by_id(self, code):
+        cursor = self.conexion.cursor()
+        sql = "SELECT * FROM city WHERE id = {}".format(code)
+        cursor.execute(sql)
+        ans = cursor.fetchall()
+        cursor.close()
         return ans
