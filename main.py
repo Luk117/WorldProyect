@@ -24,6 +24,9 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.bt_buscarciudad_A.clicked.connect(self.buscar_ciudad)
         self.ui.bt_buscarlenguaje_A.clicked.connect(self.buscar_lenguaje)
 
+        # busqueda avanzada
+        self.ui.bt_busqueda_av.clicked.connect(self.busqueda_avanzada())
+
         # self.ui.bt_buscarpais_A.clicked.connect(self.busqueda('country as p'))
         # self.ui.bt_buscarciudad_A.clicked.connect(self.busqueda('city as c'))
         # self.ui.bt_buscarlenguaje_A.clicked.connect(self.busqueda('countrylanguage'))
