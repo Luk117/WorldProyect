@@ -356,25 +356,33 @@ class MiApp(QtWidgets.QMainWindow):
     def insert_lenguaje(self):
 
         addcodigopaisl = self.ui.addCountryCodel.text()
+        if not addcodigopaisl:
+            self.error_msg("Ingrese un codigo de pais")
+            return -1
         addlenguaje = self.ui.addLenguajel.text()
-        addesofficial = self.ui.addOfficiall.text()
-        addporcentaje = self.ui.addPorcentajel.text()
+        if not addlenguaje:
+            self.error_msg("Ingrese un Nombre para el lenguaje")
+            return -1
+        addesofficial = self.ui.addOfficiall.text() or 'F'
+        addporcentaje = self.ui.addPorcentajel.text() or '0'
 
-        self.conexion_db.agrega_lenguaje(addcodigopaisl, addlenguaje, addesofficial, addporcentaje)
+        try:
+            self.conexion_db.agrega_lenguaje(addcodigopaisl, addlenguaje, addesofficial, addporcentaje)
 
-        self.ui.addCountryCodel.clear()
-        self.ui.addLenguajel.clear()
-        self.ui.addOfficiall.clear()
-        self.ui.addPorcentajel.clear()
+            self.ui.addCountryCodel.clear()
+            self.ui.addLenguajel.clear()
+            self.ui.addOfficiall.clear()
+            self.ui.addPorcentajel.clear()
+            self.info_msg("Lenguaje agregado exitosamente")
+        except:
+            self.error_msg("Error al agregar lenguaje: \n Recuerda revisar que todos los tipos de dato sean los adecuados")
+
 
     def eliminar_lenguaje(self):
         lenguajedel = self.ui.lineEdit_3.text()
         lenguajedel = ("'" + lenguajedel + "'")
 
         resp = (self.conexion_db.elimina_lenguaje(lenguajedel))
-        datos = self.conexion_db.get_lenguajes()
-
-        set_items(datos, self.ui.tableLenguaje)
 
         if resp is None:
             self.ui.estatusLenguaje.setText("NO EXISTE")
@@ -458,28 +466,36 @@ class MiApp(QtWidgets.QMainWindow):
 
     def insert_ciudad(self):
 
-        idadd = str(self.ui.addIDc.text())
         nombrecadd = str(self.ui.addNombrec.text())
+        if not nombrecadd:
+            self.error_msg("Ingrese un Nombre")
+            return -1
         codigopaiscadd = str(self.ui.addCountryCodec.text())
+        if not codigopaiscadd:
+            self.error_msg("Ingrese un codigo de pais")
+            return -1
         distritoadd = str(self.ui.addDistritoc.text())
-        poblacioncadd = str(self.ui.addPoblacionc.text())
+        poblacioncadd = str(self.ui.addPoblacionc.text()) or '0'
 
-        self.conexion_db.agrega_ciudad(idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
+        try:
+            self.conexion_db.agrega_ciudad(nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
 
-        self.ui.addIDc.clear()
-        self.ui.addNombrec.clear()
-        self.ui.addCountryCodec.clear()
-        self.ui.addDistritoc.clear()
-        self.ui.addPoblacionc.clear()
+            # self.ui.addIDc.clear()
+            self.ui.addNombrec.clear()
+            self.ui.addCountryCodec.clear()
+            self.ui.addDistritoc.clear()
+            self.ui.addPoblacionc.clear()
+            self.info_msg("Ciudad agregada exitosamente")
+        except:
+            self.error_msg("Error al agregar ciudad: \n Recuerda revisar que todos los tipos de dato sean los adecuados y que countrycode exista")
+
+
 
     def eliminar_ciudad(self):
         delid = self.ui.codigoEliminarc.text()
         delid = ("'" + delid + "'")
 
         resp = (self.conexion_db.elimina_ciudad(delid))
-        datos = self.conexion_db.get_ciudades()
-
-        set_items(datos, self.ui.tableCiudad)
 
         if resp is None:
             self.ui.estatusCiudad.setText("NO EXISTE")

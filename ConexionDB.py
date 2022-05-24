@@ -3,7 +3,8 @@ import mysql.connector
 
 class ConexionBD:
 
-    def __init__(self, password=input("Ingrese su contraseña de SQL: ")):
+    def __init__(self, password=None):
+        password = input("Ingrese su contraseña de SQL: ") if password is None else password
         self.conexion = mysql.connector.connect(host="localhost",
                                                 database="world",
                                                 user="root",
@@ -31,6 +32,7 @@ class ConexionBD:
                                                                                localnameadd, gobiernoadd,
                                                                                cabezadeestadoadd, capitaladd,
                                                                                codigo2add)
+        print(sql)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
@@ -66,10 +68,11 @@ class ConexionBD:
 
     # -------------------------------Metodos de Ciudades-------------------------------------------------------------------
 
-    def agrega_ciudad(self, idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd):
+    def agrega_ciudad(self, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd):
         cursor = self.conexion.cursor()
-        sql = '''INSERT INTO city (ID,Name,CountryCode,District,Population) 
-        VALUES('{}', '{}','{}', '{}','{}')'''.format(idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
+        sql = '''INSERT INTO city (Name,CountryCode,District,Population) 
+        VALUES('{}', '{}','{}', '{}')'''.format(nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
+        print(sql)
         cursor.execute(sql)
         registro = cursor.fetchall()
         return registro
