@@ -1,6 +1,7 @@
 import sys
+
+from ConexionDB import ConexionBD
 from GUI import *
-from ConexionDB import *
 from Query import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem, QMessageBox
@@ -249,7 +250,7 @@ class MiApp(QtWidgets.QMainWindow):
         codigoel = str("'" + codigoel + "'")
 
         resp = (self.conexion_db.elimina_pais(codigoel))
-        datos = self.conexion_db.get_paises()
+        datos = self.conexion_db.buscar_paises()
 
         set_items(datos, self.ui.tabla_busqueda)
 
@@ -384,30 +385,34 @@ class MiApp(QtWidgets.QMainWindow):
 
     def autofill_lan(self):
 
-        codigorr = str(self.ui.codLenguaup.text())
-        codigorr = ("'" + codigorr + "'")
-        codigo_pais = str(self.ui.codeCUpLanc.text())
-        codigo_pais = ("'" + codigo_pais + "'")
-        autofill = self.conexion_db.busca_lenguajeYpais(codigorr, codigo_pais)
+        if((str(self.ui.codLenguaup.text())=="") or (str(self.ui.codeCUpLanc.text())=="")):
+            msg = "¡Debe ingresar el código del país y el  lenguaje para poder autocompletar!"
+            self.error_msg(msg)
+        else:
+            codigorr = str(self.ui.codLenguaup.text())
+            codigorr = ("'" + codigorr + "'")
+            codigo_pais = str(self.ui.codeCUpLanc.text())
+            codigo_pais = ("'" + codigo_pais + "'")
+            autofill = self.conexion_db.busca_lenguajeYpais(codigorr, codigo_pais)
 
-        for data in autofill:
+            for data in autofill:
 
-            if (str(data[2]) == "T"):
-                self.ui.radioSi_lan.setChecked(True)
-                self.ui.radioNo_lan.setChecked(False)
-            elif (str(data[2]) == "F"):
-                self.ui.radioNo_lan.setChecked(True)
-                self.ui.radioSi_lan.setChecked(False)
-            self.ui.upPorcentajel.setText(str(data[3]))
+                if (str(data[2]) == "T"):
+                    self.ui.radioSi_lan.setChecked(True)
+                    self.ui.radioNo_lan.setChecked(False)
+                elif (str(data[2]) == "F"):
+                    self.ui.radioNo_lan.setChecked(True)
+                    self.ui.radioSi_lan.setChecked(False)
+                self.ui.upPorcentajel.setText(str(data[3]))
 
     def actualizar_lan(self):
 
-        if((str(self.ui.codLenguaup.text())=="") & (str(self.ui.codeCUpLanc.text())=="")):
+        if((str(self.ui.codLenguaup.text())=="") or (str(self.ui.codeCUpLanc.text())=="")):
             msg = "¡Debe ingresar el código del país y el  lenguaje a actualizar!"
             self.error_msg(msg)
         else:
-            upcodigopaisl = self.ui.upCountryCodel.text()
-            uplenguaje = self.ui.upLenguajel.text()
+            upcodigopaisl = self.ui.codeCUpLanc.text()
+            uplenguaje = self.ui.codLenguaup.text()
             upporcentaje = self.ui.upPorcentajel.text()
 
             if (self.ui.radioSi_lan.isChecked() == True):
@@ -415,9 +420,18 @@ class MiApp(QtWidgets.QMainWindow):
             elif (self.ui.radioNo_lan.isChecked() == True):
                 upesofficial = 'F'
 
-            self.conexion_db.actualiza_lenguaje(upcodigopaisl, uplenguaje, upesofficial, upporcentaje)
-            msg="¡Se ha actualizado el lenguaje de este país!"
-            self.info_msg(msg)
+            autofill = self.conexion_db.busca_lenguajeYpais(uplenguaje, upcodigopaisl)
+            for data in autofill:
+                oficial=data[2]
+                porcentaje=data[3]
+
+            if(upesofficial==oficial) or (upporcentaje==porcentaje):
+                msg="¡Tienes que cambiar alguno de los datos para actualizar!"
+                self.error_msg(msg)
+            else:
+                self.conexion_db.actualiza_lenguaje(upcodigopaisl, uplenguaje, upesofficial, upporcentaje)
+                msg="¡Se ha actualizado el lenguaje de este país!"
+                self.info_msg(msg)
 
     # ------------------------------------Metodos para las ciudades------------------------------------------------------
 

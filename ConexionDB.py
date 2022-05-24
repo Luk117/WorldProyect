@@ -3,7 +3,7 @@ import mysql.connector
 
 class ConexionBD:
 
-    def __init__(self, password=input("password: ")):
+    def __init__(self, password=input("Ingrese su contraseña de SQL: ")):
         self.conexion = mysql.connector.connect(host="localhost",
                                                 database="world",
                                                 user="root",
