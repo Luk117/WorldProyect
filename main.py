@@ -3,8 +3,8 @@ import sys
 from ConexionDB import ConexionBD
 from GUI import *
 from Query import *
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QTableWidgetItem, QMessageBox
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 
 
 class MiApp(QtWidgets.QMainWindow):
@@ -27,12 +27,8 @@ class MiApp(QtWidgets.QMainWindow):
         # busqueda avanzada
         self.ui.bt_busqueda_av.clicked.connect(self.busqueda_avanzada)
 
-        #clear busqueda
+        # clear busqueda
         self.ui.bt_clear_busqueda.clicked.connect(self.clear_busqueda)
-
-        # self.ui.bt_buscarpais_A.clicked.connect(self.busqueda('country as p'))
-        # self.ui.bt_buscarciudad_A.clicked.connect(self.busqueda('city as c'))
-        # self.ui.bt_buscarlenguaje_A.clicked.connect(self.busqueda('countrylanguage'))
 
         # CheckBoxes busqueda
         self.cbxes_pais = {
@@ -71,8 +67,6 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.upCiudad.clicked.connect(self.actualizar_ciudad)
         self.ui.upLengua.clicked.connect(self.actualizar_lan)
 
-
-
         # FillUpdates
         self.ui.codigoPaisUp.returnPressed.connect(self.fillact_pais)
         self.ui.idCiudadup.returnPressed.connect(self.fillact_city)
@@ -101,13 +95,6 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui.tabla_busqueda.setColumnWidth(14, 200)
         self.ui.tabla_busqueda.setColumnWidth(15, 200)
 
-
-
-
-    # def busqueda(self, tables):
-    #     sql = Query()
-    #     sql.append_tables(tables)
-    #
     # ------------------------------------Metodos para los paises------------------------------------------------------
 
     def buscar_pais(self):
@@ -220,9 +207,10 @@ class MiApp(QtWidgets.QMainWindow):
         codigo2add = (self.ui.addCode2p.text())
 
         try:
-            self.conexion_db.agrega_pais(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd, independenciaadd,
-                                     poblacionpadd, expectativaadd, gnpadd, gnpoldadd, localnameadd, gobiernoadd,
-                                     cabezadeestadoadd, capitaladd, codigo2add)
+            self.conexion_db.agrega_pais(codigoadd, nombrepadd, continenteadd, regionadd, surfaceareaadd,
+                                         independenciaadd,
+                                         poblacionpadd, expectativaadd, gnpadd, gnpoldadd, localnameadd, gobiernoadd,
+                                         cabezadeestadoadd, capitaladd, codigo2add)
             self.ui.addCodep.clear()
             self.ui.addNamep.clear()
             self.ui.addContientep.clear()
@@ -243,16 +231,11 @@ class MiApp(QtWidgets.QMainWindow):
         except:
             self.error_msg("Error al agregar pais: \n Recuerda revisar que todos los tipos de dato sean los adecuados")
 
-
-
     def eliminar_pais(self):
         codigoel = self.ui.codigoEliminarp.text()
         codigoel = str("'" + codigoel + "'")
 
         resp = (self.conexion_db.elimina_pais(codigoel))
-        datos = self.conexion_db.buscar_paises()
-
-        set_items(datos, self.ui.tabla_busqueda)
 
         if resp is None:
             self.ui.estatusPais.setText("NO EXISTE")
@@ -263,7 +246,7 @@ class MiApp(QtWidgets.QMainWindow):
             self.ui.estatusPais.setText("SE ELIMINO")
 
     def actualizar_pais(self):
-        if((str(self.ui.codigoPaisUp.text())=="")):
+        if ((str(self.ui.codigoPaisUp.text()) == "")):
             msg = "¡Debe ingresar el código del país a actualizar!"
             self.error_msg(msg)
         else:
@@ -289,7 +272,7 @@ class MiApp(QtWidgets.QMainWindow):
                                             localnameadd,
                                             gobiernoadd, cabezadeestadoadd, capitaladd, codigo2add)
 
-            msg="¡Se ha actualizado el país!"
+            msg = "¡Se ha actualizado el país!"
             self.info_msg(msg)
 
             self.ui.codigoPaisUp.clear()
@@ -308,14 +291,12 @@ class MiApp(QtWidgets.QMainWindow):
             self.ui.upCapitalp.clear()
             self.ui.upCode2p.clear()
 
-
     def fillact_pais(self):
         codigorr = str(self.ui.codigoPaisUp.text())
         codigorr = ("'" + codigorr + "'")
         autofill = self.conexion_db.get_pais_by_code(codigorr)
 
         for data in autofill:
-
             self.ui.upNamep.setText((data[1]))
             self.ui.upContientep.setText((data[2]))
             self.ui.upRegionp.setText(data[3])
@@ -375,8 +356,8 @@ class MiApp(QtWidgets.QMainWindow):
             self.ui.addPorcentajel.clear()
             self.info_msg("Lenguaje agregado exitosamente")
         except:
-            self.error_msg("Error al agregar lenguaje: \n Recuerda revisar que todos los tipos de dato sean los adecuados")
-
+            self.error_msg(
+                "Error al agregar lenguaje: \n Recuerda revisar que todos los tipos de dato sean los adecuados")
 
     def eliminar_lenguaje(self):
         lenguajedel = self.ui.lineEdit_3.text()
@@ -393,7 +374,7 @@ class MiApp(QtWidgets.QMainWindow):
 
     def autofill_lan(self):
 
-        if((str(self.ui.codLenguaup.text())=="") or (str(self.ui.codeCUpLanc.text())=="")):
+        if ((str(self.ui.codLenguaup.text()) == "") or (str(self.ui.codeCUpLanc.text()) == "")):
             msg = "¡Debe ingresar el código del país y el  lenguaje para poder autocompletar!"
             self.error_msg(msg)
         else:
@@ -415,13 +396,16 @@ class MiApp(QtWidgets.QMainWindow):
 
     def actualizar_lan(self):
 
-        if((str(self.ui.codLenguaup.text())=="") or (str(self.ui.codeCUpLanc.text())=="")):
+        if ((str(self.ui.codLenguaup.text()) == "") or (str(self.ui.codeCUpLanc.text()) == "")):
             msg = "¡Debe ingresar el código del país y el  lenguaje a actualizar!"
             self.error_msg(msg)
         else:
             upcodigopaisl = self.ui.codeCUpLanc.text()
             uplenguaje = self.ui.codLenguaup.text()
             upporcentaje = self.ui.upPorcentajel.text()
+            upesofficial = ''
+            oficial = ''
+            porcentaje = ''
 
             if (self.ui.radioSi_lan.isChecked() == True):
                 upesofficial = 'T'
@@ -430,15 +414,15 @@ class MiApp(QtWidgets.QMainWindow):
 
             autofill = self.conexion_db.busca_lenguajeYpais(uplenguaje, upcodigopaisl)
             for data in autofill:
-                oficial=data[2]
-                porcentaje=data[3]
+                oficial = data[2]
+                porcentaje = data[3]
 
-            if(upesofficial==oficial) or (upporcentaje==porcentaje):
-                msg="¡Tienes que cambiar alguno de los datos para actualizar!"
+            if (upesofficial == oficial) or (upporcentaje == porcentaje):
+                msg = "¡Tienes que cambiar alguno de los datos para actualizar!"
                 self.error_msg(msg)
             else:
                 self.conexion_db.actualiza_lenguaje(upcodigopaisl, uplenguaje, upesofficial, upporcentaje)
-                msg="¡Se ha actualizado el lenguaje de este país!"
+                msg = "¡Se ha actualizado el lenguaje de este país!"
                 self.info_msg(msg)
 
     # ------------------------------------Metodos para las ciudades------------------------------------------------------
@@ -487,9 +471,8 @@ class MiApp(QtWidgets.QMainWindow):
             self.ui.addPoblacionc.clear()
             self.info_msg("Ciudad agregada exitosamente")
         except:
-            self.error_msg("Error al agregar ciudad: \n Recuerda revisar que todos los tipos de dato sean los adecuados y que countrycode exista")
-
-
+            self.error_msg(
+                "Error al agregar ciudad: \n Recuerda revisar que todos los tipos de dato sean los adecuados y que countrycode exista")
 
     def eliminar_ciudad(self):
         delid = self.ui.codigoEliminarc.text()
@@ -505,40 +488,8 @@ class MiApp(QtWidgets.QMainWindow):
         else:
             self.ui.estatusCiudad.setText("SE ELIMINO")
 
-    # def modificar_ciudades(self):
-    #     id_producto = self.ui.id_producto.text()
-    #     id_producto = str("'" + id_producto + "'")
-    #     nombreXX = self.conexion_db.busca_producto(id_producto)
-    #
-    #     if nombreXX != None:
-    #
-    #         self.ui.id_buscar.setText("ACTUALIZAR")
-    #
-    #         codigoM = self.ui.codigo_actualizar.text()
-    #         nombreM = self.ui.nombre_actualizar.text()
-    #         modeloM = self.ui.modelo_actualizar.text()
-    #         precioM = self.ui.precio_actualizar.text()
-    #         cantidadM = self.ui.cantidad_actualizar.text()
-    #
-    #         act = self.conexion_db.actualiza_productos(codigoM, nombreM, modeloM, precioM, cantidadM)
-    #         if act == 1:
-    #             self.ui.id_buscar.setText("ACTUALIZADO")
-    #             self.ui.codigo_actualizar.clear()
-    #             self.ui.nombre_actualizar.clear()
-    #             self.ui.modelo_actualizar.clear()
-    #             self.ui.precio_actualizar.clear()
-    #             self.ui.cantidad_actualizar.clear()
-    #             self.ui.id_producto.clear()
-    #
-    #         elif act == 0:
-    #             self.ui.id_buscar.setText("ERROR")
-    #         else:
-    #             self.ui.id_buscar.setText("INCORRECTO")
-    #     else:
-    #         self.ui.id_buscar.setText("NO EXISTE")
-
     def actualizar_ciudad(self):
-        if((str(self.ui.idCiudadup.text())=="")):
+        if ((str(self.ui.idCiudadup.text()) == "")):
             msg = "¡Debe ingresar el código de la ciudad a actualizar!"
             self.error_msg(msg)
         else:
@@ -549,9 +500,8 @@ class MiApp(QtWidgets.QMainWindow):
             poblacioncadd = str(self.ui.upPoblacionc.text())
 
             self.conexion_db.actualiza_ciudad(idadd, nombrecadd, codigopaiscadd, distritoadd, poblacioncadd)
-            msg="¡Se ha actualizado la ciudad!"
+            msg = "¡Se ha actualizado la ciudad!"
             self.info_msg(msg)
-
 
     def fillact_city(self):
         codigorr = str(self.ui.idCiudadup.text())
@@ -559,12 +509,12 @@ class MiApp(QtWidgets.QMainWindow):
         autofill = self.conexion_db.get_ciudad_by_id(codigorr)
 
         for data in autofill:
-
             self.ui.upNombrec.setText(str(data[1]))
             self.ui.upCountryCodec.setText(str(data[2]))
             self.ui.upDistritoc.setText(str(data[3]))
             self.ui.upPoblacionc.setText(str(data[4]))
-    #Metodo Pop Up Errores
+
+    # Metodo Pop Up Errores
     def error_msg(self, error):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Warning)
@@ -576,7 +526,8 @@ class MiApp(QtWidgets.QMainWindow):
         msg.setStandardButtons(QMessageBox.Ok)
 
         retval = msg.exec_()
-    #Metodo Pop Up Informacion
+
+    # Metodo Pop Up Informacion
     def info_msg(self, info):
         msg = QMessageBox()
         msg.setIcon(QMessageBox.Information)
@@ -589,23 +540,6 @@ class MiApp(QtWidgets.QMainWindow):
 
         retval = msg.exec_()
 
-
-
-
-
-
-
-
-
-
-        # if __name__ == "__main__":
-# import sys
-# app = QtWidgets.QApplication(sys.argv)
-# MainWindow = QtWidgets.QMainWindow()
-# ui = Ui_MainWindow()
-# ui.setupUi(MainWindow)
-# MainWindow.show()
-# sys.exit(app.exec_())
 
 # ---------------------------------------Metodos para eliminar codigo repetido-------------------------------------------
 def set_items(datos, table):
@@ -633,7 +567,6 @@ def set_parameters(query: Query, cbxes: dict):
     return added_parameters
 
 
-
 def set_tabla_busqueda(query: Query, tabla):
     parameters = query.get_parameters()
     i = 0
@@ -644,16 +577,6 @@ def set_tabla_busqueda(query: Query, tabla):
     for j in range(i, 15):
         tabla.setColumnHidden(j, True)
 
-
-
-# if __name__ == "__main__":
-# import sys
-# app = QtWidgets.QApplication(sys.argv)
-# MainWindow = QtWidgets.QMainWindow()
-# ui = Ui_MainWindow()
-# ui.setupUi(MainWindow)
-# MainWindow.show()
-# sys.exit(app.exec_())
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
