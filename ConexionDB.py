@@ -109,6 +109,7 @@ class ConexionBD:
     def busca_lenguajeYpais(self, nomlenguaje, codpais):
         cursor = self.conexion.cursor()
         sql = "SELECT * FROM CountryLanguage WHERE Language = {} AND countrycode = {}".format(nomlenguaje, codpais)
+        print(sql)
         cursor.execute(sql)
         nombreL = cursor.fetchall()
         cursor.close()
