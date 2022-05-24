@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -83,7 +83,7 @@
      <widget class="QLineEdit" name="codigoPais_A">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>170</x>
         <y>80</y>
         <width>241</width>
         <height>22</height>
@@ -233,7 +233,7 @@
      <widget class="QLineEdit" name="codigoCiudad_A">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>170</x>
         <y>260</y>
         <width>241</width>
         <height>22</height>
@@ -313,7 +313,7 @@
      <widget class="QLineEdit" name="codigoLenguaje_A">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>170</x>
         <y>380</y>
         <width>241</width>
         <height>22</height>
@@ -660,6 +660,104 @@
       <property name="text">
        <string>Clear</string>
       </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_p">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>70</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="currentText">
+       <string>p.name</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>p.name</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>p.code</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>p.continent</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>p.region</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>p.indepYear</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>p.LocalName</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>p.GovernmentForm</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_c">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>250</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>c.name</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>c.id</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>c.countrycode</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>c.district</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="comboBox_l">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>370</y>
+        <width>131</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>l.language</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>l.countrycode</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="agregarCampo">

@@ -1,5 +1,3 @@
-import sys
-
 from ConexionDB import ConexionBD
 from GUI import *
 from Query import *
@@ -110,9 +108,10 @@ class MiApp(QtWidgets.QMainWindow):
         set_tabla_busqueda(sql, self.ui.tabla_busqueda)
 
         # decide what to look for (with queries)
-        name_p = self.ui.codigoPais_A.text()
-        if not name_p.__eq__(''):
-            sql.append_wheres("p.name like '{}'".format(name_p))
+        input_p = self.ui.codigoPais_A.text()
+        par_p = self.ui.comboBox_p.currentText()
+        if not input_p.__eq__(''):
+            sql.append_wheres("{} like '{}'".format(par_p, input_p))
         datos = self.conexion_db.buscar(sql.get_query())
 
         set_items(datos, self.ui.tabla_busqueda)
@@ -332,9 +331,10 @@ class MiApp(QtWidgets.QMainWindow):
         # set table
         set_tabla_busqueda(sql, self.ui.tabla_busqueda)
 
-        name_l = self.ui.codigoLenguaje_A.text()
-        if not name_l.__eq__(''):
-            sql.append_wheres("l.language like '{}'".format(name_l))
+        input_l = self.ui.codigoLenguaje_A.text()
+        par_l = self.ui.comboBox_l.currentText()
+        if not input_l.__eq__(''):
+            sql.append_wheres("{} like '{}'".format(par_l, input_l))
         datos = self.conexion_db.buscar(sql.get_query())
 
         set_items(datos, self.ui.tabla_busqueda)
@@ -453,8 +453,9 @@ class MiApp(QtWidgets.QMainWindow):
 
         # decide what to look for
         name_c = self.ui.codigoCiudad_A.text()
+        par_c = self.ui.comboBox_c.currentText()
         if not name_c.__eq__(''):
-            sql.append_wheres("c.name like '{}'".format(name_c))
+            sql.append_wheres("{} like '{}'".format(par_c, name_c))
         datos = self.conexion_db.buscar(sql.get_query())
 
         set_items(datos, self.ui.tabla_busqueda)
