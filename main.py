@@ -13,7 +13,7 @@ class MiApp(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.conexion_db = ConexionBD('jd4130201')
+        self.conexion_db = ConexionBD('id')
         # Acciones de Boton
 
         # Mostrar todos los datos
